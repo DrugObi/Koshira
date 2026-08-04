@@ -178,32 +178,38 @@
   /* --- Archivio cinetico --- */
   .archivio{background:var(--nero);color:var(--bianco);position:relative}
   .arch-pin{position:sticky;top:0;height:100svh;overflow:hidden;display:flex;flex-direction:column;justify-content:center}
-  .arch-line{position:absolute;left:50%;top:0;bottom:0;width:1px;background:rgba(255,255,255,.10)}
+  .arch-line{position:absolute;left:50%;top:0;bottom:0;width:1px;background:rgba(255,255,255,.10);z-index:1}
   .arch-line::before,.arch-line::after{content:'';position:absolute;left:-4px;width:9px;height:1px;background:var(--oro)}
   .arch-line::before{top:16vh}
   .arch-line::after{bottom:18vh}
-  .arch-head{position:absolute;top:0;left:0;right:0;display:flex;justify-content:space-between;align-items:baseline;padding:26px 24px;font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:#8f8f8b;z-index:2}
+  .arch-head{position:absolute;top:0;left:0;right:0;display:flex;justify-content:space-between;align-items:baseline;padding:78px 24px 0;font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:#8f8f8b;z-index:3}
   .arch-head .cnt{font-family:var(--serif);font-size:clamp(22px,3.4vw,34px);letter-spacing:.06em;color:var(--bianco)}
   .arch-head .cnt small{font-size:10px;letter-spacing:.3em;color:#7a7a76;font-family:var(--sans)}
-  .arch-track{display:flex;align-items:center;gap:clamp(10px,1.4vw,20px);padding:0 8vw;will-change:transform}
-  .arch-item{flex:0 0 auto;width:clamp(190px,21vw,290px);opacity:.3;transform:scale(.94);transition:opacity .45s ease,transform .45s ease;text-align:left}
-  .arch-item img{width:100%;aspect-ratio:4/5;object-fit:cover;background:var(--carta)}
+  .arch-head .cnt b{display:inline-block;font-weight:400}
+  .arch-head .cnt b.tick{animation:numIn .5s ease both}
+  @keyframes numIn{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
+  .arch-ghost{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-family:var(--serif);font-size:clamp(110px,23vw,340px);line-height:.8;letter-spacing:.04em;text-transform:uppercase;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.13);white-space:nowrap;pointer-events:none;z-index:0;opacity:1;transition:opacity .3s ease}
+  .arch-ghost.out{opacity:0}
+  .arch-track{display:flex;align-items:center;gap:clamp(10px,1.4vw,20px);perspective:1700px;will-change:transform;position:relative;z-index:2}
+  .arch-item{flex:0 0 auto;width:clamp(190px,21vw,290px);text-align:left;will-change:transform,opacity;backface-visibility:hidden}
+  .arch-item .im{display:block;overflow:hidden;aspect-ratio:4/5;background:var(--carta)}
+  .arch-item img{width:120%;height:100%;margin-left:-10%;object-fit:cover;display:block;will-change:transform}
   .arch-item .n{display:block;margin-top:11px;font-size:9px;letter-spacing:.26em;color:#7a7a76;transition:color .45s ease}
-  .arch-item.on{opacity:1;transform:none}
   .arch-item.on .n{color:var(--oro)}
-  .arch-item:focus-visible{outline:1px solid var(--oro);outline-offset:6px;opacity:1}
-  .arch-meta{position:absolute;left:0;right:0;bottom:72px;text-align:center;padding:0 24px;z-index:2}
-  .arch-meta .nm{font-family:var(--serif);font-size:clamp(22px,3.4vw,34px);letter-spacing:.14em;text-transform:uppercase}
-  .arch-meta .dt{display:block;margin-top:11px;font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:#8f8f8b}
-  .arch-hint{position:absolute;left:0;right:0;bottom:30px;text-align:center;font-size:9px;letter-spacing:.3em;text-transform:uppercase;color:#575754;z-index:2}
-  .arch-bar{position:absolute;left:0;right:0;bottom:0;height:1px;background:rgba(255,255,255,.12);z-index:2}
+  .arch-item:focus-visible{outline:1px solid var(--oro);outline-offset:6px}
+  .arch-meta{position:absolute;left:0;right:0;bottom:74px;text-align:center;padding:0 24px;z-index:3}
+  .arch-meta .dt{display:block;font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:#8f8f8b;transition:opacity .3s ease}
+  .arch-meta .dt.out{opacity:0}
+  .arch-hint{position:absolute;left:0;right:0;bottom:30px;text-align:center;font-size:9px;letter-spacing:.3em;text-transform:uppercase;color:#575754;z-index:3}
+  .arch-bar{position:absolute;left:0;right:0;bottom:0;height:1px;background:rgba(255,255,255,.12);z-index:3}
   .arch-bar i{display:block;height:100%;width:0;background:var(--oro)}
   .archivio.arch-static{height:auto!important}
   .arch-static .arch-pin{position:static;height:auto;padding:80px 0 40px}
-  .arch-static .arch-track{overflow-x:auto;transform:none!important;padding-bottom:18px}
-  .arch-static .arch-item{opacity:1;transform:none}
-  .arch-static .arch-line,.arch-static .arch-meta{display:none}
-  @media(max-width:720px){ .arch-meta{bottom:64px} .arch-meta .nm{font-size:20px} }
+  .arch-static .arch-track{overflow-x:auto;transform:none!important;padding:0 24px!important;perspective:none}
+  .arch-static .arch-item{opacity:1!important;transform:none!important}
+  .arch-static .arch-item img{transform:none!important}
+  .arch-static .arch-line,.arch-static .arch-ghost{display:none}
+  @media(max-width:720px){ .arch-head{padding-top:66px} .arch-meta{bottom:64px} }
 
   /* --- Storia cinetica --- */
   #storiaTxt span{opacity:.14;transition:opacity .5s ease}
@@ -227,13 +233,13 @@
 <body>
 
 <header>
-  <div class="brand"><img src="img-brand-wordmark.png" alt="KOSHIRA"></div>
+  <div class="brand"><img src="images/brand/wordmark.png" alt="KOSHIRA"></div>
   <nav><a href="#collezione">Collezione</a><a href="#archivio">Archivio</a><a href="#storia">Storia</a><a href="#contatti">Contatti</a></nav>
   <button class="cart-btn" onclick="toggleCart(true)">Carrello <span class="count" id="cartCount">0</span></button>
 </header>
 
 <section class="hero">
-  <img class="logo" src="img-brand-logo-full.png" alt="KOSHIRA — simbolo e logotipo">
+  <img class="logo" src="images/brand/logo-full.png" alt="KOSHIRA — simbolo e logotipo">
   <div class="tag">Eyewear ・ Streetwear ・ Drop 01</div>
   <div class="jp">コ シ ラ</div>
   <a class="scroll" href="#collezione">Scorri ✦</a>
@@ -244,7 +250,7 @@
 <figure class="edit-hero">
   <div class="wheel-wrap">
     <div class="wheel-clip">
-      <img id="wheel" src="img-edit-1.jpg" alt="Composizione occhiali Koshira">
+      <img id="wheel" src="images/edit/1.jpg" alt="Composizione occhiali Koshira">
     </div>
   </div>
   <figcaption>Sette forme, un solo archivio ✦ コシラ</figcaption>
@@ -269,24 +275,22 @@
       <span>Archivio ✦ Drop 01</span>
       <span class="cnt"><b id="archN">01</b> <small>/ <i id="archTot">22</i></small></span>
     </div>
+    <div class="arch-ghost" id="archGhost"></div>
     <div class="arch-track" id="archTrack"></div>
-    <div class="arch-meta">
-      <span class="nm" id="archNome"></span>
-      <span class="dt" id="archDet"></span>
-    </div>
+    <div class="arch-meta"><span class="dt" id="archDet"></span></div>
     <div class="arch-hint">Scorri ✦ clicca per aprire</div>
     <div class="arch-bar"><i id="archBar"></i></div>
   </div>
 </section>
 
 <div class="mosaico">
-  <figure><img loading="lazy" src="img-edit-2.jpg" alt=""><figcaption>Archivio <span class="oro">✦</span> 01</figcaption></figure>
-  <figure><img loading="lazy" src="img-edit-3.jpg" alt=""><figcaption>Archivio <span class="oro">✦</span> 02</figcaption></figure>
-  <figure><img loading="lazy" src="img-edit-4.jpg" alt=""><figcaption>Archivio <span class="oro">✦</span> 03</figcaption></figure>
+  <figure><img loading="lazy" src="images/edit/2.jpg" alt=""><figcaption>Archivio <span class="oro">✦</span> 01</figcaption></figure>
+  <figure><img loading="lazy" src="images/edit/3.jpg" alt=""><figcaption>Archivio <span class="oro">✦</span> 02</figcaption></figure>
+  <figure><img loading="lazy" src="images/edit/4.jpg" alt=""><figcaption>Archivio <span class="oro">✦</span> 03</figcaption></figure>
 </div>
 
 <section class="storia" id="storia">
-  <img src="img-brand-symbol.png" alt="">
+  <img src="images/brand/symbol.png" alt="">
   <p id="storiaTxt">Koshira nasce dall'incontro tra la precisione dell'eyewear giapponese e il linguaggio della strada. Sette forme, un archivio numerato: nero, bianco, niente di superfluo.</p>
   <small>— Testo provvisorio, lo riscriviamo insieme —</small>
 </section>
@@ -308,21 +312,21 @@
 </section>
 
 <div class="filmstrip">
-  <img loading="lazy" src="img-edit-5.jpg" alt="">
-  <img loading="lazy" src="img-edit-6.jpg" alt="">
-  <img loading="lazy" src="img-edit-7.jpg" alt="">
-  <img loading="lazy" src="img-edit-8.jpg" alt="">
+  <img loading="lazy" src="images/edit/5.jpg" alt="">
+  <img loading="lazy" src="images/edit/6.jpg" alt="">
+  <img loading="lazy" src="images/edit/7.jpg" alt="">
+  <img loading="lazy" src="images/edit/8.jpg" alt="">
 </div>
 
 <footer id="contatti">
-  <img src="img-brand-wordmark.png" alt="KOSHIRA">
+  <img src="images/brand/wordmark.png" alt="KOSHIRA">
   <div class="links"><a href="#">Instagram</a><a href="#">TikTok</a><a href="#">Email</a><a href="#">Spedizioni & Resi</a></div>
   <p>© 2026 KOSHIRA — Tutti i diritti riservati</p>
 </footer>
 
 <div class="overlay" id="overlay">
   <div class="ov-top">
-    <img src="img-brand-wordmark.png" alt="KOSHIRA">
+    <img src="images/brand/wordmark.png" alt="KOSHIRA">
     <button onclick="closeProduct()">✕ Chiudi</button>
   </div>
   <div class="ov-body">
@@ -365,44 +369,44 @@
    finiture: {Vista:cartella, Sole:cartella} oppure {unica:cartella}
    ============================================================ */
 const MODELLI = [
-  { id:'bene', modella:'img-models-bene.jpg', nome:'Ben\u00e8', prezzo:null,
+  { id:'bene', modella:'images/models/bene.jpg', nome:'Ben\u00e8', prezzo:null,
     desc:'Squadrato massiccio con dettagli a tre punti e stella incisa sul frontale. Un solo colore: nero.',
     varianti:[ {codice:'01', colore:'Nero', finiture:{unica:22}} ] },
-  { id:'alone', modella:'img-models-alone.jpg', nome:'Alone.', prezzo:null,
+  { id:'alone', modella:'images/models/alone.jpg', nome:'Alone.', prezzo:null,
     desc:'Mascherina squadrata dal volume pieno, lente bordeaux. Il punto finale della collezione \u2014 letteralmente.',
     varianti:[
       {codice:'01', colore:'Nero', finiture:{unica:14}},
       {codice:'02', colore:'Tartaruga chiara', finiture:{unica:17}},
       {codice:'03', colore:'Marrone trasparente', finiture:{unica:15}} ] },
-  { id:'robin', modella:'img-models-robin.jpg', nome:'Robin', prezzo:null,
+  { id:'robin', modella:'images/models/robin.jpg', nome:'Robin', prezzo:null,
     desc:'Rettangolare semi-rimless dal taglio anni \u201990: acetato nero lucido, lente verde chiaro, cerniere in metallo a vista.',
     varianti:[ {codice:'01', colore:'Nero', finiture:{unica:1}} ] },
-  { id:'anuar', modella:'img-models-anuar.jpg', nome:'Anuar', cover:20, prezzo:null,
+  { id:'anuar', modella:'images/models/anuar.jpg', nome:'Anuar', cover:20, prezzo:null,
     desc:'Geometrico a taglio esagonale, lente piena. Tre colorazioni, stessa attitudine.',
     varianti:[
       {codice:'01', colore:'Nero', finiture:{unica:2}},
       {codice:'02', colore:'Tartarugato', finiture:{unica:20}},
       {codice:'03', colore:'Verde oliva', finiture:{unica:11}} ] },
-  { id:'riri', modella:'img-models-riri.jpg', nome:'Riri', cover:4, prezzo:null,
+  { id:'riri', modella:'images/models/riri.jpg', nome:'Riri', cover:4, prezzo:null,
     desc:'Oversize anni \u201970, firma in corsivo sull\u2019astina e ideogramma inciso. Da vista, da sole, o rosso trasparente.',
     varianti:[
       {codice:'01', colore:'Nero', finiture:{Vista:12, Sole:16}},
       {codice:'02', colore:'Tartarugato', finiture:{Vista:6, Sole:4}},
       {codice:'03', colore:'Rosso trasparente', finiture:{unica:5}} ] },
-  { id:'julian', modella:'img-models-julian.jpg', nome:'Julian', cover:7, prezzo:null,
+  { id:'julian', modella:'images/models/julian.jpg', nome:'Julian', cover:7, prezzo:null,
     desc:'Tondo grafico dal profilo compatto, il pezzo pi\u00f9 versatile dell\u2019archivio. Da vista o da sole.',
     varianti:[
       {codice:'01', colore:'Nero', finiture:{Vista:9, Sole:18}},
       {codice:'02', colore:'Tartarugato', finiture:{Vista:8, Sole:3}},
       {codice:'03', colore:'Grigio-blu', finiture:{Vista:7, Sole:19}} ] },
-  { id:'joel', modella:'img-models-joel.jpg', nome:'Joel', cover:13, prezzo:null,
+  { id:'joel', modella:'images/models/joel.jpg', nome:'Joel', cover:13, prezzo:null,
     desc:'Squadrato essenziale, spigoli netti e presenza decisa. Disponibile da vista o da sole.',
     varianti:[
       {codice:'01', colore:'Nero', finiture:{Vista:10, Sole:21}},
       {codice:'02', colore:'Cristallo', finiture:{unica:13}} ] }
 ];
 
-const P=(c,n)=>(window.IMG&&window.IMG[c+'/'+n])||`img-${c}-${n}.jpg`;
+const P=(c,n)=>(window.IMG&&window.IMG[c+'/'+n])||`images/${c}/${n}.jpg`;
 const imgs = c => [1,2,3].map(n => P(c,n));  // c: numero o cartella so_*
 const fmt = p => p==null ? '\u2014 \u20ac' : '\u20ac ' + p.toFixed(0);
 const firstFolder = m => { const f = m.varianti[0].finiture; return f.unica ?? f.Vista ?? f.Sole; };
@@ -445,7 +449,7 @@ MODELLI.forEach((m,i)=>{
 const edTile = document.createElement('div');
 edTile.className = 'tile tile-editoriale';
 edTile.setAttribute('aria-hidden','true');
-edTile.innerHTML = `<img class="ed-img" loading="lazy" src="img-edit-9.jpg" alt="">`;
+edTile.innerHTML = `<img class="ed-img" loading="lazy" src="images/edit/9.jpg" alt="">`;
 grid.appendChild(edTile);
 
 /* ruota cinetica: rotazione lenta + contributo scroll */
@@ -572,13 +576,16 @@ MODELLI.forEach((m, mi) => m.varianti.forEach((v, vi) =>
   Object.keys(v.finiture).forEach(f =>
     ARCH.push({ m, mi, v, vi, fin: f, folder: v.finiture[f] }))));
 
-const archSec = document.getElementById('archivio');
+const archSec   = document.getElementById('archivio');
 const archTrack = document.getElementById('archTrack');
-const archBar = document.getElementById('archBar');
+const archBar   = document.getElementById('archBar');
+const archGhost = document.getElementById('archGhost');
+const archNEl   = document.getElementById('archN');
+const archDetEl = document.getElementById('archDet');
 
 archTrack.innerHTML = ARCH.map((a, k) => `
   <button class="arch-item" data-k="${k}" aria-label="Apri ${a.m.nome} ${a.v.colore}">
-    <img loading="lazy" src="${P(a.folder, 1)}" alt="${a.m.nome} \u2014 ${a.v.colore}">
+    <span class="im"><img loading="lazy" src="${P(a.folder, 1)}" alt="${a.m.nome} \u2014 ${a.v.colore}"></span>
     <span class="n">${String(k + 1).padStart(2, '0')}</span>
   </button>`).join('');
 document.getElementById('archTot').textContent = String(ARCH.length);
@@ -588,39 +595,75 @@ archTrack.querySelectorAll('.arch-item').forEach(b => b.onclick = () => {
 });
 
 const archItems = [...archTrack.children];
+const archImgs  = archItems.map(el => el.querySelector('img'));
 let archOffs = [], archMax = 0, archLast = -1;
+let archCur = 0, archTarget = 0, archVel = 0, archVis = false;
+
+const RATIO = 0.8;                      /* < 1 = scorre più veloce dello scroll */
+const clamp = (v, a, b) => v < a ? a : v > b ? b : v;
 
 function archLayout(){
   if (REDUCE) { archSec.classList.add('arch-static'); return; }
+  const w = archItems[0].offsetWidth;
+  const pad = Math.max(24, innerWidth / 2 - w / 2);   /* prima e ultima arrivano al centro */
+  archTrack.style.paddingLeft = archTrack.style.paddingRight = pad + 'px';
   archMax = Math.max(0, archTrack.scrollWidth - innerWidth);
-  archSec.style.height = (innerHeight + archMax) + 'px';
+  archSec.style.height = (innerHeight + archMax * RATIO) + 'px';
   archOffs = archItems.map(el => el.offsetLeft + el.offsetWidth / 2);
 }
-function archUpdate(){
-  if (REDUCE) return;
+
+function archFrame(){
+  requestAnimationFrame(archFrame);
+  if (REDUCE || !archVis) return;
+
   const span = archSec.offsetHeight - innerHeight;
-  if (span <= 0) return;
-  const p = Math.min(1, Math.max(0, -archSec.getBoundingClientRect().top / span));
-  const shift = p * archMax;
-  archTrack.style.transform = `translate3d(${-shift}px,0,0)`;
+  const p = span > 0 ? clamp(-archSec.getBoundingClientRect().top / span, 0, 1) : 0;
+  archTarget = p * archMax;
+  archCur += (archTarget - archCur) * 0.11;           /* inerzia: il nastro insegue e si posa */
+  archVel  = archTarget - archCur;
+
+  archTrack.style.transform = `translate3d(${-archCur}px,0,0)`;
   archBar.style.width = (p * 100) + '%';
-  const c = innerWidth / 2;
+  archGhost.style.transform = `translate(-50%,-50%) translateX(${clamp(archVel * 1.1, -70, 70)}px)`;
+
+  const c = innerWidth / 2, reach = innerWidth * 0.55;
   let best = 0, bd = Infinity;
-  for (let i = 0; i < archOffs.length; i++){
-    const d = Math.abs(archOffs[i] - shift - c);
-    if (d < bd) { bd = d; best = i; }
+  for (let i = 0; i < archItems.length; i++){
+    const x = archOffs[i] - archCur;                  /* centro della card sullo schermo */
+    const dist = x - c;
+    if (Math.abs(dist) < bd) { bd = Math.abs(dist); best = i; }
+    const d  = clamp(dist / reach, -1.8, 1.8);
+    const ad = Math.min(Math.abs(d), 1);
+    /* cilindro: più sei lontano dal centro, più ruoti via e rientri nel fondo */
+    const rot = clamp(d * 16 + archVel * 0.05, -30, 30);
+    archItems[i].style.transform = `rotateY(${rot}deg) scale(${1 - ad * 0.17})`;
+    archItems[i].style.opacity   = 0.18 + (1 - ad) * 0.82;
+    archImgs[i].style.transform  = `translateX(${-d * 26}px)`;   /* parallasse dentro la foto */
   }
+
   if (best !== archLast){
     if (archLast >= 0) archItems[archLast].classList.remove('on');
     archItems[best].classList.add('on');
     const a = ARCH[best];
-    document.getElementById('archN').textContent = String(best + 1).padStart(2, '0');
-    document.getElementById('archNome').textContent = a.m.nome;
-    document.getElementById('archDet').textContent =
-      `"${a.v.codice}" ${a.v.colore}` + (a.fin !== 'unica' ? ' \u00b7 ' + a.fin : '');
+    archNEl.textContent = String(best + 1).padStart(2, '0');
+    archNEl.classList.remove('tick'); void archNEl.offsetWidth; archNEl.classList.add('tick');
+    archGhost.classList.add('out');
+    archDetEl.classList.add('out');
+    clearTimeout(archSwap);
+    archSwap = setTimeout(() => {
+      archGhost.textContent = a.m.nome;
+      archDetEl.textContent = `"${a.v.codice}" ${a.v.colore}` + (a.fin !== 'unica' ? ' \u00b7 ' + a.fin : '');
+      archGhost.classList.remove('out');
+      archDetEl.classList.remove('out');
+    }, 170);
     archLast = best;
   }
 }
+let archSwap = null;
+new IntersectionObserver(e => archVis = e[0].isIntersecting,
+                         { rootMargin: '10% 0px' }).observe(archSec);
+if (!REDUCE) requestAnimationFrame(archFrame);
+else { archGhost.textContent = ARCH[0].m.nome; archDetEl.textContent = ''; }
 
 /* ---------- 2. STORIA CINETICA ---------- */
 const stx = document.getElementById('storiaTxt');
@@ -771,13 +814,13 @@ let ticking = false;
 function onScroll(){
   if (ticking) return;
   ticking = true;
-  requestAnimationFrame(() => { archUpdate(); storiaUpdate(); ticking = false; });
+  requestAnimationFrame(() => { storiaUpdate(); ticking = false; });
 }
 function onResize(){ archLayout(); loupeInit(); onScroll(); }
 addEventListener('scroll', onScroll, { passive: true });
 addEventListener('resize', onResize);
 addEventListener('load', onResize);
-archLayout(); storiaUpdate(); archUpdate();
+archLayout(); storiaUpdate();
 
 renderCart();
 </script>
