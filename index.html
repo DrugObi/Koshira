@@ -3,7 +3,29 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>KOSHIRA — Eyewear</title>
+<title>KOSHIRA — Eyewear ✦ Drop 01</title>
+<meta name="description" content="KOSHIRA — eyewear di ispirazione giapponese. Sette forme e ventidue varianti: acetati neri, tartarugati e trasparenti, con la stella incisa sul frontale. Drop 01.">
+<link rel="canonical" href="https://drugobi.github.io/Koshira/">
+<meta name="theme-color" content="#0b0b0a">
+
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="alternate icon" href="favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="KOSHIRA">
+<meta property="og:locale" content="it_IT">
+<meta property="og:url" content="https://drugobi.github.io/Koshira/">
+<meta property="og:title" content="KOSHIRA — Eyewear ✦ Drop 01">
+<meta property="og:description" content="Sette forme, ventidue varianti. Eyewear di ispirazione giapponese, con la stella incisa sul frontale.">
+<meta property="og:image" content="https://drugobi.github.io/Koshira/img-edit-9.jpg">
+<meta property="og:image:width" content="1024">
+<meta property="og:image:height" content="1024">
+<meta property="og:image:alt" content="La stella Koshira, still-life in oro">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="KOSHIRA — Eyewear ✦ Drop 01">
+<meta name="twitter:description" content="Sette forme, ventidue varianti. Eyewear di ispirazione giapponese, con la stella incisa sul frontale.">
+<meta name="twitter:image" content="https://drugobi.github.io/Koshira/img-edit-9.jpg">
 <style>
   :root{
     --nero:#0b0b0a; --bianco:#ffffff; --carta:#f4f4f2; --grigio:#9a9a96; --linea:#e4e4e1; --oro:#b08d3e;
@@ -100,8 +122,10 @@
 
   .scrim{position:fixed;inset:0;background:rgba(11,11,10,.45);z-index:90;opacity:0;pointer-events:none;transition:opacity .25s}
   .scrim.open{opacity:1;pointer-events:auto}
-  .drawer{position:fixed;top:0;right:0;bottom:0;width:min(420px,92vw);background:var(--bianco);z-index:95;transform:translateX(102%);transition:transform .3s ease;display:flex;flex-direction:column}
-  .drawer.open{transform:none}
+  .drawer{position:fixed;top:0;right:0;bottom:0;width:min(420px,92vw);background:var(--bianco);z-index:95;transform:translateX(102%);visibility:hidden;transition:transform .3s ease, visibility 0s .3s;display:flex;flex-direction:column}
+  .drawer.open{transform:none;visibility:visible;transition:transform .3s ease, visibility 0s}
+  .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+  :where(a,button,[tabindex]):focus-visible{outline:2px solid var(--oro);outline-offset:3px}
   .dr-head{display:flex;justify-content:space-between;align-items:center;padding:18px 20px;border-bottom:1px solid var(--linea)}
   .dr-head h4{font-size:11px;letter-spacing:.3em;text-transform:uppercase;font-weight:400}
   .dr-head button{font-size:10px;letter-spacing:.24em;text-transform:uppercase}
@@ -190,10 +214,10 @@
   @keyframes numIn{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
   .arch-ghost{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-family:var(--serif);font-size:clamp(110px,23vw,340px);line-height:.8;letter-spacing:.04em;text-transform:uppercase;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.13);white-space:nowrap;pointer-events:none;z-index:0;opacity:1;transition:opacity .3s ease}
   .arch-ghost.out{opacity:0}
-  .arch-track{display:flex;align-items:center;gap:clamp(10px,1.4vw,20px);perspective:1700px;will-change:transform;position:relative;z-index:2}
+  .arch-track{display:flex;align-items:center;gap:clamp(10px,1.4vw,20px);perspective:1700px;perspective-origin:50% 50%;will-change:transform,perspective-origin;position:relative;z-index:2}
   .arch-item{flex:0 0 auto;width:clamp(190px,21vw,290px);text-align:left;will-change:transform,opacity;backface-visibility:hidden}
   .arch-item .im{display:block;overflow:hidden;aspect-ratio:4/5;background:var(--carta)}
-  .arch-item img{width:120%;height:100%;margin-left:-10%;object-fit:cover;display:block;will-change:transform}
+  .arch-item img{width:124%;height:100%;margin-left:-12%;object-fit:cover;display:block;will-change:transform}
   .arch-item .n{display:block;margin-top:11px;font-size:9px;letter-spacing:.26em;color:#7a7a76;transition:color .45s ease}
   .arch-item.on .n{color:var(--oro)}
   .arch-item:focus-visible{outline:1px solid var(--oro);outline-offset:6px}
@@ -235,7 +259,7 @@
 <header>
   <div class="brand"><img src="img-brand-wordmark.png" alt="KOSHIRA"></div>
   <nav><a href="#collezione">Collezione</a><a href="#archivio">Archivio</a><a href="#storia">Storia</a><a href="#contatti">Contatti</a></nav>
-  <button class="cart-btn" onclick="toggleCart(true)">Carrello <span class="count" id="cartCount">0</span></button>
+  <button class="cart-btn" id="cartBtn" aria-expanded="false" aria-controls="drawer" onclick="toggleCart(true)">Carrello <span class="count" id="cartCount" aria-hidden="true">0</span><span class="sr-only" id="cartSr">vuoto</span></button>
 </header>
 
 <section class="hero">
@@ -324,7 +348,7 @@
   <p>© 2026 KOSHIRA — Tutti i diritti riservati</p>
 </footer>
 
-<div class="overlay" id="overlay">
+<div class="overlay" id="overlay" role="dialog" aria-modal="true" aria-labelledby="ovNome" tabindex="-1">
   <div class="ov-top">
     <img src="img-brand-wordmark.png" alt="KOSHIRA">
     <button onclick="closeProduct()">✕ Chiudi</button>
@@ -349,8 +373,8 @@
 </div>
 
 <div class="scrim" id="scrim" onclick="toggleCart(false)"></div>
-<aside class="drawer" id="drawer">
-  <div class="dr-head"><h4>Carrello</h4><button onclick="toggleCart(false)">✕ Chiudi</button></div>
+<aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="drTitolo" tabindex="-1">
+  <div class="dr-head"><h4 id="drTitolo">Carrello</h4><button onclick="toggleCart(false)">✕ Chiudi</button></div>
   <div class="dr-items" id="drItems"></div>
   <div class="dr-foot">
     <div class="tot"><span>Totale</span><span id="drTot">€ 0</span></div>
@@ -359,7 +383,7 @@
   </div>
 </aside>
 
-<div class="toast" id="toast">Aggiunto al carrello ✦</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script>
 
@@ -477,7 +501,7 @@ function openProduct(m,i,v,fin){
   document.getElementById('ovDesc').textContent = m.desc;
   renderVariant();
   overlay.classList.add('open');
-  document.body.style.overflow = 'hidden';
+  apriDialogo(overlay);
 }
 function renderVariant(){
   const m = cur.m, v = m.varianti[cur.v];
@@ -515,7 +539,39 @@ function renderVariant(){
 }
 function setVar(k){ cur.v = k; cur.fin = null; renderVariant(); }
 function setFin(f){ cur.fin = f; renderVariant(); }
-function closeProduct(){ overlay.classList.remove('open'); document.body.style.overflow=''; }
+function closeProduct(){ overlay.classList.remove('open'); chiudiDialogo(overlay); }
+
+/* ---------- dialoghi accessibili: focus trap, Esc, ritorno del focus ---------- */
+const FOCUSABILI = 'a[href],button:not([disabled]),input,select,textarea,[tabindex]:not([tabindex="-1"])';
+let dlgAperto = null, dlgTrigger = null;
+
+function apriDialogo(el){
+  dlgTrigger = document.activeElement;
+  dlgAperto = el;
+  document.body.style.overflow = 'hidden';
+  requestAnimationFrame(()=>{ (el.querySelector(FOCUSABILI) || el).focus(); });
+}
+function chiudiDialogo(el){
+  if(dlgAperto !== el) return;
+  dlgAperto = null;
+  document.body.style.overflow = '';
+  if(dlgTrigger && document.contains(dlgTrigger)) dlgTrigger.focus();
+  dlgTrigger = null;
+}
+document.addEventListener('keydown', e=>{
+  if(!dlgAperto) return;
+  if(e.key === 'Escape'){
+    e.preventDefault();
+    dlgAperto === overlay ? closeProduct() : toggleCart(false);
+    return;
+  }
+  if(e.key !== 'Tab') return;
+  const f = [...dlgAperto.querySelectorAll(FOCUSABILI)].filter(x=>x.getClientRects().length);
+  if(!f.length) return;
+  const primo = f[0], ultimo = f[f.length-1];
+  if(e.shiftKey && document.activeElement === primo){ e.preventDefault(); ultimo.focus(); }
+  else if(!e.shiftKey && document.activeElement === ultimo){ e.preventDefault(); primo.focus(); }
+});
 
 document.getElementById('ovAdd').onclick = ()=>{
   const m = cur.m, v = m.varianti[cur.v];
@@ -539,7 +595,9 @@ function changeQty(key,d){
 }
 function renderCart(){
   const box = document.getElementById('drItems');
-  document.getElementById('cartCount').textContent = cart.reduce((s,x)=>s+x.qty,0);
+  const n = cart.reduce((s,x)=>s+x.qty,0);
+  document.getElementById('cartCount').textContent = n;
+  document.getElementById('cartSr').textContent = n===0 ? 'vuoto' : n===1 ? '1 articolo' : n+' articoli';
   box.innerHTML = cart.length ? cart.map(x=>`
     <div class="dr-item">
       <div><div class="n">${x.nome}</div><div class="p">${x.det} \u00b7 ${fmt(x.prezzo)}</div></div>
@@ -551,16 +609,21 @@ function renderCart(){
   document.getElementById('drTot').textContent = '\u20ac ' + tot.toFixed(0);
 }
 function toggleCart(open){
-  document.getElementById('drawer').classList.toggle('open', open);
+  const dr = document.getElementById('drawer');
+  dr.classList.toggle('open', open);
   document.getElementById('scrim').classList.toggle('open', open);
+  document.getElementById('cartBtn').setAttribute('aria-expanded', open ? 'true' : 'false');
+  open ? apriDialogo(dr) : chiudiDialogo(dr);
 }
 function checkoutDemo(){
   alert('Checkout demo \u2014 il pagamento reale si collega quando pubblichiamo il sito.');
 }
-function toast(){
+function toast(msg){
   const t = document.getElementById('toast');
+  t.textContent = msg || 'Aggiunto al carrello \u2726';
   t.classList.add('show');
-  setTimeout(()=>t.classList.remove('show'), 1600);
+  clearTimeout(t._t);
+  t._t = setTimeout(()=>t.classList.remove('show'), 1600);
 }
 
 /* ============================================================
@@ -585,7 +648,7 @@ const archDetEl = document.getElementById('archDet');
 
 archTrack.innerHTML = ARCH.map((a, k) => `
   <button class="arch-item" data-k="${k}" aria-label="Apri ${a.m.nome} ${a.v.colore}">
-    <span class="im"><img loading="lazy" src="${P(a.folder, 1)}" alt="${a.m.nome} \u2014 ${a.v.colore}"></span>
+    <span class="im"><img ${k < 6 ? '' : 'loading="lazy" '}decoding="async" src="${P(a.folder, 1)}" alt="${a.m.nome} \u2014 ${a.v.colore}"></span>
     <span class="n">${String(k + 1).padStart(2, '0')}</span>
   </button>`).join('');
 document.getElementById('archTot').textContent = String(ARCH.length);
@@ -596,20 +659,23 @@ archTrack.querySelectorAll('.arch-item').forEach(b => b.onclick = () => {
 
 const archItems = [...archTrack.children];
 const archImgs  = archItems.map(el => el.querySelector('img'));
-let archOffs = [], archMax = 0, archLast = -1;
+let archOffs = [], archMax = 0, archLast = -1, archW = 0;
 let archCur = 0, archTarget = 0, archVel = 0, archVis = false;
+let archPrev = 0, archFermo = 0;
 
 const RATIO = 0.8;                      /* < 1 = scorre più veloce dello scroll */
 const clamp = (v, a, b) => v < a ? a : v > b ? b : v;
 
 function archLayout(){
   if (REDUCE) { archSec.classList.add('arch-static'); return; }
-  const w = archItems[0].offsetWidth;
-  const pad = Math.max(24, innerWidth / 2 - w / 2);   /* prima e ultima arrivano al centro */
+  archW = archItems[0].offsetWidth;
+  const pad = Math.max(24, innerWidth / 2 - archW / 2);   /* prima e ultima arrivano al centro */
   archTrack.style.paddingLeft = archTrack.style.paddingRight = pad + 'px';
-  archMax = Math.max(0, archTrack.scrollWidth - innerWidth);
-  archSec.style.height = (innerHeight + archMax * RATIO) + 'px';
   archOffs = archItems.map(el => el.offsetLeft + el.offsetWidth / 2);
+  /* la corsa e' la distanza fra il centro della prima card e quello dell'ultima:
+     misurata, non dedotta da scrollWidth (che con flex + padding non e' affidabile) */
+  archMax = Math.max(0, archOffs[archOffs.length - 1] - archOffs[0]);
+  archSec.style.height = (innerHeight + archMax * RATIO) + 'px';
 }
 
 function archFrame(){
@@ -619,10 +685,21 @@ function archFrame(){
   const span = archSec.offsetHeight - innerHeight;
   const p = span > 0 ? clamp(-archSec.getBoundingClientRect().top / span, 0, 1) : 0;
   archTarget = p * archMax;
-  archCur += (archTarget - archCur) * 0.11;           /* inerzia: il nastro insegue e si posa */
-  archVel  = archTarget - archCur;
+
+  /* scroll fermo? il nastro si posa con la card esattamente sulla hairline */
+  archFermo = Math.abs(archTarget - archPrev) < 0.4 ? archFermo + 1 : 0;
+  archPrev = archTarget;
+  const posa = archFermo > 6 && archLast >= 0;
+  const meta = posa ? archOffs[archLast] - innerWidth / 2 : archTarget;
+
+  const prima = archCur;
+  archCur += (meta - archCur) * (posa ? 0.07 : 0.11);   /* inerzia: insegue e si posa */
+  archVel = (archCur - prima) * 9;                      /* velocita' reale del nastro */
 
   archTrack.style.transform = `translate3d(${-archCur}px,0,0)`;
+  /* il punto di fuga deve stare al centro dello SCHERMO, non al centro del nastro
+     (che e' lungo ~6000px): senza questo le card lontane si deformano e si sfalsano */
+  archTrack.style.perspectiveOrigin = (archCur + innerWidth / 2) + 'px 50%';
   archBar.style.width = (p * 100) + '%';
   archGhost.style.transform = `translate(-50%,-50%) translateX(${clamp(archVel * 1.1, -70, 70)}px)`;
 
@@ -636,9 +713,10 @@ function archFrame(){
     const ad = Math.min(Math.abs(d), 1);
     /* cilindro: più sei lontano dal centro, più ruoti via e rientri nel fondo */
     const rot = clamp(d * 16 + archVel * 0.05, -30, 30);
-    archItems[i].style.transform = `rotateY(${rot}deg) scale(${1 - ad * 0.17})`;
+    archItems[i].style.transform = `rotateY(${rot}deg) translateZ(${-ad * 90}px) scale(${1 - ad * 0.10})`;
     archItems[i].style.opacity   = 0.18 + (1 - ad) * 0.82;
-    archImgs[i].style.transform  = `translateX(${-d * 26}px)`;   /* parallasse dentro la foto */
+    /* parallasse: mai oltre l'overscan del 12%, altrimenti scopre il fondo della cornice */
+    archImgs[i].style.transform  = `translateX(${-clamp(d, -1, 1) * archW * 0.08}px)`;
   }
 
   if (best !== archLast){
