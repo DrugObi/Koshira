@@ -233,13 +233,13 @@
 <body>
 
 <header>
-  <div class="brand"><img src="images/brand/wordmark.png" alt="KOSHIRA"></div>
+  <div class="brand"><img src="img-brand-wordmark.png" alt="KOSHIRA"></div>
   <nav><a href="#collezione">Collezione</a><a href="#archivio">Archivio</a><a href="#storia">Storia</a><a href="#contatti">Contatti</a></nav>
   <button class="cart-btn" onclick="toggleCart(true)">Carrello <span class="count" id="cartCount">0</span></button>
 </header>
 
 <section class="hero">
-  <img class="logo" src="images/brand/logo-full.png" alt="KOSHIRA — simbolo e logotipo">
+  <img class="logo" src="img-brand-logo-full.png" alt="KOSHIRA — simbolo e logotipo">
   <div class="tag">Eyewear ・ Streetwear ・ Drop 01</div>
   <div class="jp">コ シ ラ</div>
   <a class="scroll" href="#collezione">Scorri ✦</a>
@@ -250,7 +250,7 @@
 <figure class="edit-hero">
   <div class="wheel-wrap">
     <div class="wheel-clip">
-      <img id="wheel" src="images/edit/1.jpg" alt="Composizione occhiali Koshira">
+      <img id="wheel" src="img-edit-1.jpg" alt="Composizione occhiali Koshira">
     </div>
   </div>
   <figcaption>Sette forme, un solo archivio ✦ コシラ</figcaption>
@@ -284,13 +284,13 @@
 </section>
 
 <div class="mosaico">
-  <figure><img loading="lazy" src="images/edit/2.jpg" alt=""><figcaption>Archivio <span class="oro">✦</span> 01</figcaption></figure>
-  <figure><img loading="lazy" src="images/edit/3.jpg" alt=""><figcaption>Archivio <span class="oro">✦</span> 02</figcaption></figure>
-  <figure><img loading="lazy" src="images/edit/4.jpg" alt=""><figcaption>Archivio <span class="oro">✦</span> 03</figcaption></figure>
+  <figure><img loading="lazy" src="img-edit-2.jpg" alt=""><figcaption>Archivio <span class="oro">✦</span> 01</figcaption></figure>
+  <figure><img loading="lazy" src="img-edit-3.jpg" alt=""><figcaption>Archivio <span class="oro">✦</span> 02</figcaption></figure>
+  <figure><img loading="lazy" src="img-edit-4.jpg" alt=""><figcaption>Archivio <span class="oro">✦</span> 03</figcaption></figure>
 </div>
 
 <section class="storia" id="storia">
-  <img src="images/brand/symbol.png" alt="">
+  <img src="img-brand-symbol.png" alt="">
   <p id="storiaTxt">Koshira nasce dall'incontro tra la precisione dell'eyewear giapponese e il linguaggio della strada. Sette forme, un archivio numerato: nero, bianco, niente di superfluo.</p>
   <small>— Testo provvisorio, lo riscriviamo insieme —</small>
 </section>
@@ -312,21 +312,21 @@
 </section>
 
 <div class="filmstrip">
-  <img loading="lazy" src="images/edit/5.jpg" alt="">
-  <img loading="lazy" src="images/edit/6.jpg" alt="">
-  <img loading="lazy" src="images/edit/7.jpg" alt="">
-  <img loading="lazy" src="images/edit/8.jpg" alt="">
+  <img loading="lazy" src="img-edit-5.jpg" alt="">
+  <img loading="lazy" src="img-edit-6.jpg" alt="">
+  <img loading="lazy" src="img-edit-7.jpg" alt="">
+  <img loading="lazy" src="img-edit-8.jpg" alt="">
 </div>
 
 <footer id="contatti">
-  <img src="images/brand/wordmark.png" alt="KOSHIRA">
+  <img src="img-brand-wordmark.png" alt="KOSHIRA">
   <div class="links"><a href="#">Instagram</a><a href="#">TikTok</a><a href="#">Email</a><a href="#">Spedizioni & Resi</a></div>
   <p>© 2026 KOSHIRA — Tutti i diritti riservati</p>
 </footer>
 
 <div class="overlay" id="overlay">
   <div class="ov-top">
-    <img src="images/brand/wordmark.png" alt="KOSHIRA">
+    <img src="img-brand-wordmark.png" alt="KOSHIRA">
     <button onclick="closeProduct()">✕ Chiudi</button>
   </div>
   <div class="ov-body">
@@ -369,44 +369,44 @@
    finiture: {Vista:cartella, Sole:cartella} oppure {unica:cartella}
    ============================================================ */
 const MODELLI = [
-  { id:'bene', modella:'images/models/bene.jpg', nome:'Ben\u00e8', prezzo:null,
+  { id:'bene', modella:'img-models-bene.jpg', nome:'Ben\u00e8', prezzo:null,
     desc:'Squadrato massiccio con dettagli a tre punti e stella incisa sul frontale. Un solo colore: nero.',
     varianti:[ {codice:'01', colore:'Nero', finiture:{unica:22}} ] },
-  { id:'alone', modella:'images/models/alone.jpg', nome:'Alone.', prezzo:null,
+  { id:'alone', modella:'img-models-alone.jpg', nome:'Alone.', prezzo:null,
     desc:'Mascherina squadrata dal volume pieno, lente bordeaux. Il punto finale della collezione \u2014 letteralmente.',
     varianti:[
       {codice:'01', colore:'Nero', finiture:{unica:14}},
       {codice:'02', colore:'Tartaruga chiara', finiture:{unica:17}},
       {codice:'03', colore:'Marrone trasparente', finiture:{unica:15}} ] },
-  { id:'robin', modella:'images/models/robin.jpg', nome:'Robin', prezzo:null,
+  { id:'robin', modella:'img-models-robin.jpg', nome:'Robin', prezzo:null,
     desc:'Rettangolare semi-rimless dal taglio anni \u201990: acetato nero lucido, lente verde chiaro, cerniere in metallo a vista.',
     varianti:[ {codice:'01', colore:'Nero', finiture:{unica:1}} ] },
-  { id:'anuar', modella:'images/models/anuar.jpg', nome:'Anuar', cover:20, prezzo:null,
+  { id:'anuar', modella:'img-models-anuar.jpg', nome:'Anuar', cover:20, prezzo:null,
     desc:'Geometrico a taglio esagonale, lente piena. Tre colorazioni, stessa attitudine.',
     varianti:[
       {codice:'01', colore:'Nero', finiture:{unica:2}},
       {codice:'02', colore:'Tartarugato', finiture:{unica:20}},
       {codice:'03', colore:'Verde oliva', finiture:{unica:11}} ] },
-  { id:'riri', modella:'images/models/riri.jpg', nome:'Riri', cover:4, prezzo:null,
+  { id:'riri', modella:'img-models-riri.jpg', nome:'Riri', cover:4, prezzo:null,
     desc:'Oversize anni \u201970, firma in corsivo sull\u2019astina e ideogramma inciso. Da vista, da sole, o rosso trasparente.',
     varianti:[
       {codice:'01', colore:'Nero', finiture:{Vista:12, Sole:16}},
       {codice:'02', colore:'Tartarugato', finiture:{Vista:6, Sole:4}},
       {codice:'03', colore:'Rosso trasparente', finiture:{unica:5}} ] },
-  { id:'julian', modella:'images/models/julian.jpg', nome:'Julian', cover:7, prezzo:null,
+  { id:'julian', modella:'img-models-julian.jpg', nome:'Julian', cover:7, prezzo:null,
     desc:'Tondo grafico dal profilo compatto, il pezzo pi\u00f9 versatile dell\u2019archivio. Da vista o da sole.',
     varianti:[
       {codice:'01', colore:'Nero', finiture:{Vista:9, Sole:18}},
       {codice:'02', colore:'Tartarugato', finiture:{Vista:8, Sole:3}},
       {codice:'03', colore:'Grigio-blu', finiture:{Vista:7, Sole:19}} ] },
-  { id:'joel', modella:'images/models/joel.jpg', nome:'Joel', cover:13, prezzo:null,
+  { id:'joel', modella:'img-models-joel.jpg', nome:'Joel', cover:13, prezzo:null,
     desc:'Squadrato essenziale, spigoli netti e presenza decisa. Disponibile da vista o da sole.',
     varianti:[
       {codice:'01', colore:'Nero', finiture:{Vista:10, Sole:21}},
       {codice:'02', colore:'Cristallo', finiture:{unica:13}} ] }
 ];
 
-const P=(c,n)=>(window.IMG&&window.IMG[c+'/'+n])||`images/${c}/${n}.jpg`;
+const P=(c,n)=>(window.IMG&&window.IMG[c+'/'+n])||`img-${c}-${n}.jpg`;
 const imgs = c => [1,2,3].map(n => P(c,n));  // c: numero o cartella so_*
 const fmt = p => p==null ? '\u2014 \u20ac' : '\u20ac ' + p.toFixed(0);
 const firstFolder = m => { const f = m.varianti[0].finiture; return f.unica ?? f.Vista ?? f.Sole; };
@@ -449,7 +449,7 @@ MODELLI.forEach((m,i)=>{
 const edTile = document.createElement('div');
 edTile.className = 'tile tile-editoriale';
 edTile.setAttribute('aria-hidden','true');
-edTile.innerHTML = `<img class="ed-img" loading="lazy" src="images/edit/9.jpg" alt="">`;
+edTile.innerHTML = `<img class="ed-img" loading="lazy" src="img-edit-9.jpg" alt="">`;
 grid.appendChild(edTile);
 
 /* ruota cinetica: rotazione lenta + contributo scroll */
