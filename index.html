@@ -288,9 +288,9 @@
   .arch-head .cnt b.tick{animation:numIn .5s ease both}
   @keyframes numIn{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
   .arch-track{display:flex;align-items:center;gap:clamp(10px,1.4vw,20px);perspective:1700px;perspective-origin:50% 50%;will-change:transform,perspective-origin;position:relative;z-index:2}
-  .arch-item{flex:0 0 auto;width:clamp(190px,21vw,290px);text-align:left;will-change:transform,opacity;backface-visibility:hidden}
-  .arch-item .im{display:block;overflow:hidden;aspect-ratio:4/5;background:var(--carta)}
-  .arch-item img{width:124%;height:100%;margin-left:-12%;object-fit:cover;display:block;will-change:transform}
+  .arch-item{flex:0 0 auto;width:clamp(230px,25vw,340px);text-align:left;will-change:transform,opacity;backface-visibility:hidden}
+  .arch-item .im{display:block;overflow:hidden;aspect-ratio:5/4;background:var(--carta)}
+  .arch-item img{width:100%;height:100%;object-fit:cover;display:block}
   .arch-item:focus-visible{outline:1px solid var(--oro);outline-offset:6px}
   .arch-meta{position:absolute;left:0;right:0;bottom:74px;text-align:center;padding:0 24px;z-index:3}
   .arch-meta .dt{display:block;font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:#8f8f8b;transition:opacity .3s ease}
@@ -937,12 +937,13 @@ archTrack.querySelectorAll('.arch-item').forEach(b => b.onclick = () => {
 });
 
 const archItems = [...archTrack.children];
-const archImgs  = archItems.map(el => el.querySelector('img'));
 let archOffs = [], archMax = 0, archLast = -1, archW = 0;
 let archCur = 0, archTarget = 0, archVel = 0, archVis = false;
 let archPrev = 0, archFermo = 0;
 
-const RATIO = 0.8;                      /* < 1 = scorre più veloce dello scroll */
+const RATIO = 0.68;                     /* < 1 = scorre più veloce dello scroll;
+                                           abbassato quando le card sono passate al formato 5/4,
+                                           cosi' la corsa di scroll resta quella di prima */
 const clamp = (v, a, b) => v < a ? a : v > b ? b : v;
 
 function archLayout(){
@@ -993,8 +994,6 @@ function archFrame(){
     const rot = clamp(d * 16 + archVel * 0.05, -30, 30);
     archItems[i].style.transform = `rotateY(${rot}deg) translateZ(${-ad * 90}px) scale(${1 - ad * 0.10})`;
     archItems[i].style.opacity   = 0.18 + (1 - ad) * 0.82;
-    /* parallasse: mai oltre l'overscan del 12%, altrimenti scopre il fondo della cornice */
-    archImgs[i].style.transform  = `translateX(${-clamp(d, -1, 1) * archW * 0.08}px)`;
   }
 
   if (best !== archLast){
