@@ -287,14 +287,10 @@
   .arch-head .cnt b{display:inline-block;font-weight:400}
   .arch-head .cnt b.tick{animation:numIn .5s ease both}
   @keyframes numIn{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
-  .arch-ghost{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-family:var(--serif);font-size:clamp(110px,23vw,340px);line-height:.8;letter-spacing:.04em;text-transform:uppercase;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.13);white-space:nowrap;pointer-events:none;z-index:0;opacity:1;transition:opacity .3s ease}
-  .arch-ghost.out{opacity:0}
   .arch-track{display:flex;align-items:center;gap:clamp(10px,1.4vw,20px);perspective:1700px;perspective-origin:50% 50%;will-change:transform,perspective-origin;position:relative;z-index:2}
   .arch-item{flex:0 0 auto;width:clamp(190px,21vw,290px);text-align:left;will-change:transform,opacity;backface-visibility:hidden}
   .arch-item .im{display:block;overflow:hidden;aspect-ratio:4/5;background:var(--carta)}
   .arch-item img{width:124%;height:100%;margin-left:-12%;object-fit:cover;display:block;will-change:transform}
-  .arch-item .n{display:block;margin-top:11px;font-size:10px;letter-spacing:.26em;color:#8f8f8b;transition:color .45s ease}
-  .arch-item.on .n{color:var(--oro)}
   .arch-item:focus-visible{outline:1px solid var(--oro);outline-offset:6px}
   .arch-meta{position:absolute;left:0;right:0;bottom:74px;text-align:center;padding:0 24px;z-index:3}
   .arch-meta .dt{display:block;font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:#8f8f8b;transition:opacity .3s ease}
@@ -307,7 +303,7 @@
   .arch-static .arch-track{overflow-x:auto;transform:none!important;padding:0 24px!important;perspective:none}
   .arch-static .arch-item{opacity:1!important;transform:none!important}
   .arch-static .arch-item img{transform:none!important}
-  .arch-static .arch-line,.arch-static .arch-ghost{display:none}
+  .arch-static .arch-line{display:none}
   @media(max-width:720px){ .arch-head{padding-top:66px} .arch-meta{bottom:64px} }
 
   /* --- Storia cinetica --- */
@@ -492,7 +488,6 @@
       <span>Archivio ✦ Drop 01</span>
       <span class="cnt"><b id="archN">01</b> <small>/ <i id="archTot">22</i></small></span>
     </div>
-    <div class="arch-ghost" id="archGhost"></div>
     <div class="arch-track" id="archTrack"></div>
     <div class="arch-meta"><span class="dt" id="archDet"></span></div>
     <div class="arch-hint">Scorri ✦ clicca per aprire</div>
@@ -928,14 +923,12 @@ MODELLI.forEach((m, mi) => m.varianti.forEach((v, vi) =>
 const archSec   = document.getElementById('archivio');
 const archTrack = document.getElementById('archTrack');
 const archBar   = document.getElementById('archBar');
-const archGhost = document.getElementById('archGhost');
 const archNEl   = document.getElementById('archN');
 const archDetEl = document.getElementById('archDet');
 
 archTrack.innerHTML = ARCH.map((a, k) => `
   <button class="arch-item" data-k="${k}" aria-label="Apri ${a.m.nome} ${a.v.colore}">
     <span class="im"><img ${k < 6 ? '' : 'loading="lazy" '}decoding="async" src="${P(a.folder, 1)}" alt="${a.m.nome} \u2014 ${a.v.colore}"></span>
-    <span class="n">${String(k + 1).padStart(2, '0')}</span>
   </button>`).join('');
 document.getElementById('archTot').textContent = String(ARCH.length);
 archTrack.querySelectorAll('.arch-item').forEach(b => b.onclick = () => {
@@ -987,7 +980,6 @@ function archFrame(){
      (che e' lungo ~6000px): senza questo le card lontane si deformano e si sfalsano */
   archTrack.style.perspectiveOrigin = (archCur + innerWidth / 2) + 'px 50%';
   archBar.style.width = (p * 100) + '%';
-  archGhost.style.transform = `translate(-50%,-50%) translateX(${clamp(archVel * 1.1, -70, 70)}px)`;
 
   const c = innerWidth / 2, reach = innerWidth * 0.55;
   let best = 0, bd = Infinity;
@@ -1011,13 +1003,10 @@ function archFrame(){
     const a = ARCH[best];
     archNEl.textContent = String(best + 1).padStart(2, '0');
     archNEl.classList.remove('tick'); void archNEl.offsetWidth; archNEl.classList.add('tick');
-    archGhost.classList.add('out');
     archDetEl.classList.add('out');
     clearTimeout(archSwap);
     archSwap = setTimeout(() => {
-      archGhost.textContent = a.m.nome;
       archDetEl.textContent = `"${a.v.codice}" ${a.v.colore}` + (a.fin !== 'unica' ? ' \u00b7 ' + a.fin : '');
-      archGhost.classList.remove('out');
       archDetEl.classList.remove('out');
     }, 170);
     archLast = best;
@@ -1027,7 +1016,7 @@ let archSwap = null;
 new IntersectionObserver(e => archVis = e[0].isIntersecting,
                          { rootMargin: '10% 0px' }).observe(archSec);
 if (!REDUCE) requestAnimationFrame(archFrame);
-else { archGhost.textContent = ARCH[0].m.nome; archDetEl.textContent = ''; }
+else { archDetEl.textContent = ''; }
 
 /* ---------- 2. STORIA CINETICA ---------- */
 const stx = document.getElementById('storiaTxt');
