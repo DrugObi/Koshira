@@ -121,6 +121,7 @@
   .th{flex:1;padding:0;background:var(--bianco);opacity:.55;transition:opacity .2s}
   .th.on,.th:hover{opacity:1}
   .th img{width:100%;aspect-ratio:5/4;object-fit:cover}
+  .gal .main.ritratto,.th img.ritratto{object-position:50% 12%}
   .ov-info{padding:56px 40px;display:flex;flex-direction:column;gap:20px;justify-content:center}
   .ov-info .num{font-size:10px;letter-spacing:.3em;color:var(--grigio)}
   .ov-info h3{font-family:var(--serif);font-weight:400;font-size:clamp(30px,4.6vw,46px);letter-spacing:.1em;text-transform:uppercase}
@@ -774,16 +775,23 @@ function renderVariant(){
   /* gallery */
   const folder = v.finiture[cur.fin];
   const pics = imgs(folder);
+  /* il ritratto campagna chiude la galleria: ogni pezzo mostra anche come sta addosso.
+     E' verticale, quindi prende .ritratto (inquadratura alta, il viso non viene tagliato) */
+  if(m.modella) pics.push(m.modella);
+  const eRitratto = s => s === m.modella;
   const box = document.getElementById('ovImg');
   box.innerHTML = `
     <div class="gal">
       <img class="main" id="galMain" src="${pics[0]}" alt="${m.nome}">
       <div class="thumbs">${pics.map((s,k)=>
-        `<button class="th ${k===0?'on':''}" data-k="${k}"><img loading="lazy" src="${s}" alt=""></button>`).join('')}</div>
+        `<button class="th ${k===0?'on':''}" data-k="${k}"><img class="${eRitratto(s)?'ritratto':''}" loading="lazy" src="${s}" alt=""></button>`).join('')}</div>
     </div>`;
   box.querySelectorAll('.th').forEach(b=>{
     b.onclick = ()=>{
-      document.getElementById('galMain').src = pics[+b.dataset.k];
+      const src = pics[+b.dataset.k], main = document.getElementById('galMain');
+      main.src = src;
+      main.classList.toggle('ritratto', eRitratto(src));
+      main.alt = eRitratto(src) ? `${m.nome} indossato` : m.nome;
       box.querySelectorAll('.th').forEach(x=>x.classList.remove('on'));
       b.classList.add('on');
     };
