@@ -617,6 +617,7 @@
     </div>
 
     <p class="dove-nota">Orari indicativi, verificane l'aggiornamento prima di muoverti.<br>
+      Non trovi il tuo modello? <a href="https://wa.me/393274436757" target="_blank" rel="noopener">Scrivici su WhatsApp</a>.<br>
       Sei un ottico e vuoi portare KOSHIRA in negozio?
       <a href="mailto:info@frabensrl.eu?subject=Rivendita%20KOSHIRA">Scrivici</a>.</p>
   </div>
@@ -627,6 +628,7 @@
   <div class="links">
     <a href="https://www.instagram.com/koshiraeyewear/" target="_blank" rel="noopener">Instagram</a>
     <a href="TIKTOK_URL" target="_blank" rel="noopener">TikTok</a>
+    <a href="https://wa.me/393274436757" target="_blank" rel="noopener">WhatsApp</a>
     <a href="mailto:info@frabensrl.eu">Email</a>
     <a href="#dove">Dove trovarli</a>
   </div>
@@ -686,7 +688,7 @@
       presso gli ottici rivenditori: scrivici e ti diciamo dove trovare i pezzi che hai scelto.</p>
     <button class="checkout" onclick="richiediSelezione()">Chiedi dove provarli</button>
     <small><a href="#dove" onclick="toggleCart(false)">Vedi i punti vendita</a> ·
-      <a href="mailto:info@frabensrl.eu">Scrivici via email</a></small>
+      <a href="https://wa.me/393274436757" target="_blank" rel="noopener">Scrivici su WhatsApp</a></small>
   </div>
 </aside>
 
@@ -932,15 +934,10 @@ document.addEventListener('keydown', e=>{
 });
 
 /* ---------- richieste via WhatsApp ----------
-   Sostituire WA con il numero WhatsApp Business in formato internazionale
-   senza + e senza spazi, es. '393331234567'. */
-const WA = '39XXXXXXXXXX';
+   Numero in formato internazionale, senza + e senza spazi. */
+const WA = '393274436757';
 
 function apriRichiesta(testo){
-  if(WA.indexOf('X') > -1){
-    toast('Numero WhatsApp non ancora configurato');
-    return;
-  }
   window.open('https://wa.me/' + WA + '?text=' + encodeURIComponent(testo), '_blank', 'noopener');
 }
 function richiediModello(){
