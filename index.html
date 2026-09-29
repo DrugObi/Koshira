@@ -1220,6 +1220,10 @@ new IntersectionObserver(e => archVis = e[0].isIntersecting,
 if (!REDUCE) requestAnimationFrame(archFrame);
 else { archDetEl.textContent = ''; }
 
+/* ---------- ricarica: si riparte dall'alto, non da dove si era ---------- */
+if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+if (!location.hash) addEventListener('load', () => scrollTo(0, 0));
+
 /* ---------- 2. RIVELAZIONE ALLO SCROLL (storia, dettaglio) ---------- */
 const ioRivela = new IntersectionObserver(es => {
   es.forEach(e => {
