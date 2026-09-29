@@ -125,6 +125,14 @@
   .firma .chiusa{font-family:var(--sans);font-size:11px;letter-spacing:.34em;text-transform:uppercase;
     line-height:2.6;color:#8f8f8b}
   .firma .chiusa b{color:var(--bianco);font-weight:400}
+  @media(max-width:720px){
+    .mov br{display:none}
+    .mov p{font-size:clamp(21px,5.6vw,26px);max-width:19ch}
+    .mov.largo p{max-width:21ch}
+    .mov .kana{font-size:clamp(40px,12vw,58px)}
+    .st-lab{margin-bottom:clamp(46px,8vh,70px)}
+    .mov + .mov{margin-top:clamp(64px,11vh,110px)}
+  }
   .ln{display:block;opacity:0;transform:translateY(16px);
     transition:opacity 1s ease,transform 1.1s cubic-bezier(.22,1,.36,1)}
   .in > .ln,.in p > .ln{opacity:1;transform:none}
@@ -134,7 +142,8 @@
   footer{padding:70px 24px 40px;text-align:center;border-top:1px solid var(--linea)}
   footer .ft-kana{font-size:13px;letter-spacing:.7em;color:var(--oro);margin-bottom:20px;text-indent:.7em}
   footer img{width:min(220px,50vw);margin:0 auto 26px}
-  footer .links{display:flex;gap:26px;justify-content:center;font-size:10px;letter-spacing:.26em;text-transform:uppercase;margin-bottom:26px;flex-wrap:wrap}
+  footer .links{display:flex;gap:22px;justify-content:center;font-size:10px;letter-spacing:.26em;text-transform:uppercase;margin-bottom:22px;flex-wrap:wrap}
+  footer .links a{display:inline-block;padding:7px 2px}
   footer .links a{color:var(--nero);text-decoration:none}
   footer p{font-size:10px;color:var(--grigio);letter-spacing:.12em}
   footer .links.legale{gap:20px;margin-bottom:22px;font-size:9.5px;letter-spacing:.2em}
@@ -217,7 +226,8 @@
   .neg{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:1px;background:var(--linea);border:1px solid var(--linea)}
   /* a riposo: logo del negozio su fondo carta. Al passaggio: la vetrina, scura e discreta. */
   .neg article{position:relative;isolation:isolate;overflow:hidden;background:var(--carta);
-    min-height:clamp(380px,46vh,460px);padding:38px 32px 32px;display:flex;flex-direction:column;
+    min-height:clamp(400px,48vh,480px);padding:38px 32px 34px;display:flex;flex-direction:column;
+    align-items:center;text-align:center;
     color:var(--nero);transition:color .55s ease,background .55s ease}
   .neg .foto{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;
     opacity:0;transform:scale(1.05);
@@ -225,9 +235,9 @@
   .neg article::after{content:'';position:absolute;inset:0;z-index:-1;opacity:0;
     transition:opacity .6s ease;
     background:linear-gradient(180deg,rgba(11,11,10,.80) 0%,rgba(11,11,10,.76) 40%,rgba(11,11,10,.93) 100%)}
-  .neg .logo{position:absolute;left:0;right:0;top:0;height:58%;display:grid;place-items:center;
-    padding:34px 40px 0;transition:opacity .45s ease}
-  .neg .logo img{max-width:78%;max-height:100%;width:auto;object-fit:contain}
+  .neg .logo{position:absolute;left:0;right:0;top:16%;height:40%;display:grid;place-items:center;
+    padding:0 clamp(28px,4vw,52px);transition:opacity .45s ease}
+  .neg .logo img{max-width:100%;max-height:100%;width:auto;margin:0 auto;object-fit:contain}
 
   .neg article:hover{color:var(--bianco);background:var(--nero)}
   .neg article:hover .foto{opacity:1;transform:scale(1)}
@@ -242,13 +252,14 @@
   .neg article:hover h3{opacity:1}
   .neg p{font-size:13.5px;line-height:2;color:inherit;opacity:.78;margin-bottom:6px}
   .neg .ore{font-size:11px;letter-spacing:.06em;margin-top:10px;opacity:.6}
-  .neg .azioni{display:flex;gap:18px;flex-wrap:wrap;margin-top:22px}
+  .neg .azioni{display:flex;gap:18px;flex-wrap:wrap;justify-content:center;margin-top:24px}
   .neg .azioni a{font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:inherit;
-    text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:3px;opacity:.85}
+    text-decoration:none;border-bottom:1px solid currentColor;padding:8px 2px 5px;opacity:.85}
   .neg .azioni a:hover{color:var(--oro);opacity:1}
   @media(hover:none){
-    .neg .logo{height:44%}
-    .neg h3{opacity:1}
+    /* senza hover il nome e' gia' dentro il logo: evitiamo di scriverlo due volte */
+    .neg .logo{top:13%;height:46%}
+    .neg article:hover h3{opacity:0}
   }
   .dove-nota{font-size:11px;line-height:2;color:var(--grigio);letter-spacing:.06em;margin-top:34px;text-align:center}
   .dr-foot .checkout{width:100%;background:var(--nero);color:var(--bianco);padding:15px 0;font-size:11px;letter-spacing:.3em;text-transform:uppercase}
@@ -283,7 +294,11 @@
     background:linear-gradient(180deg,transparent,rgba(11,11,10,.82))}
   .cp-coda{text-align:center;padding:clamp(30px,5vh,46px) 5vw clamp(10px,2vh,20px);
     font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:#4a4a46}
-  @media(max-width:720px){ .cp-pista{animation-duration:46s} }
+  @media(max-width:720px){
+    .cp-pista{animation-duration:46s}
+    .cp-volto{width:clamp(150px,44vw,210px)}
+    .cp-head{padding-bottom:26px}
+  }
   @media(prefers-reduced-motion:reduce){
     .cp-pista{animation:none;width:auto;overflow-x:auto;scroll-snap-type:x mandatory}
     .cp-volto{scroll-snap-align:center}
@@ -450,7 +465,13 @@
   .lt-cap{display:block;font-size:10px;letter-spacing:.26em;text-transform:uppercase;
     color:var(--grigio);text-align:center;opacity:0;transition:opacity 1s ease .8s}
   .lt-media.in .lt-cap{opacity:1}
-  @media(max-width:900px){ .lt-in{grid-template-columns:1fr;gap:34px} .lt-txt{order:2} .lt-media{order:1} }
+  @media(max-width:900px){
+    .lt-in{grid-template-columns:1fr;gap:30px} .lt-txt{order:2} .lt-media{order:1}
+    .lente{padding:clamp(60px,8vh,90px) 5vw clamp(70px,10vh,110px)}
+    .lt-kanji{right:auto;left:4vw;bottom:auto;top:44%;font-size:min(46vw,260px)}
+    .lt-txt h2{margin-bottom:22px}
+    .lt-meta{gap:22px;margin-top:30px}
+  }
   @media(prefers-reduced-motion:reduce){
     .ln{opacity:1;transform:none;transition:none}
     .st-riga{transform:scaleY(1);transition:none}
@@ -657,8 +678,8 @@
 
     <div class="mov largo" data-rivela>
       <p>
-        <span class="ln">Un blocco di acetato non sa ancora<br>che forma avrà.</span>
-        <span class="ln">Lo decide chi lo taglia, chi lo lima,<br>chi lo lucida finché la luce ci resta dentro.</span>
+        <span class="ln">Un blocco di acetato non sa ancora<br> che forma avrà.</span>
+        <span class="ln">Lo decide chi lo taglia, chi lo lima,<br> chi lo lucida finché la luce ci resta dentro.</span>
       </p>
     </div>
 
@@ -667,7 +688,7 @@
     <div class="mov largo" data-rivela>
       <p>
         <span class="ln">Non c’è una stagione, non c’è un restyling.</span>
-        <span class="ln">Sette forme, ventidue pezzi,<br>e poi l’archivio si chiude.</span>
+        <span class="ln">Sette forme, ventidue pezzi,<br> e poi l’archivio si chiude.</span>
       </p>
     </div>
 
@@ -675,7 +696,7 @@
 
     <div class="mov largo" data-rivela>
       <p>
-        <span class="ln">Alla fine resta un segno.<br>Una stella d’ottone sulla cerniera,<br>dove l’astina incontra il frontale.</span>
+        <span class="ln">Alla fine resta un segno.<br> Una stella d’ottone sulla cerniera,<br> dove l’astina incontra il frontale.</span>
         <span class="ln">Non è un ornamento. È una <em>firma</em>.</span>
       </p>
     </div>
@@ -1233,9 +1254,9 @@ let archOffs = [], archMax = 0, archLast = -1, archW = 0;
 let archCur = 0, archTarget = 0, archVel = 0, archVis = false;
 let archPrev = 0, archFermo = 0;
 
-const RATIO = 0.68;                     /* < 1 = scorre più veloce dello scroll;
-                                           abbassato quando le card sono passate al formato 5/4,
-                                           cosi' la corsa di scroll resta quella di prima */
+/* < 1 = il nastro scorre piu' veloce dello scroll. Su telefono si scende ancora,
+   altrimenti l'archivio da solo si mangia cinque schermate a meta' pagina. */
+const ratio = () => innerWidth < 760 ? 0.40 : 0.68;
 const clamp = (v, a, b) => v < a ? a : v > b ? b : v;
 
 function archLayout(){
@@ -1247,7 +1268,7 @@ function archLayout(){
   /* la corsa e' la distanza fra il centro della prima card e quello dell'ultima:
      misurata, non dedotta da scrollWidth (che con flex + padding non e' affidabile) */
   archMax = Math.max(0, archOffs[archOffs.length - 1] - archOffs[0]);
-  archSec.style.height = (innerHeight + archMax * RATIO) + 'px';
+  archSec.style.height = (innerHeight + archMax * ratio()) + 'px';
 }
 
 function archFrame(){
