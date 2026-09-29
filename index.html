@@ -102,7 +102,7 @@
   .tile-editoriale .ed-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
 
   .storia{background:var(--nero);color:var(--bianco);margin-top:0;overflow:hidden;
-    padding:clamp(180px,20vh,240px) 6vw clamp(90px,12vh,140px)}
+    padding:clamp(90px,12vh,140px) 6vw clamp(90px,12vh,140px)}
   .st-in{max-width:880px;margin:0 auto;text-align:center}
   .st-lab{font-size:10px;letter-spacing:.38em;text-transform:uppercase;color:#8f8f8b;
     margin-bottom:clamp(70px,11vh,120px)}
@@ -130,7 +130,6 @@
   .in > .ln,.in p > .ln{opacity:1;transform:none}
   .in .ln:nth-child(2){transition-delay:.16s}
   .in .ln:nth-child(3){transition-delay:.32s}
-  @media(max-width:720px){ .storia{padding-top:150px} }
 
   footer{padding:70px 24px 40px;text-align:center;border-top:1px solid var(--linea)}
   footer img{width:min(220px,50vw);margin:0 auto 26px}
@@ -205,14 +204,24 @@
   .dove{background:var(--carta);padding:clamp(80px,9vw,120px) 5vw;border-top:1px solid var(--linea)}
   .dove-in{max-width:1080px;margin:0 auto}
   .dove-intro{font-size:14px;line-height:2;color:var(--grigio);max-width:56ch;margin:26px 0 44px}
-  .neg{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1px;background:var(--linea);border:1px solid var(--linea)}
-  .neg article{background:var(--bianco);padding:34px 30px 30px;display:flex;flex-direction:column}
+  .neg{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:1px;background:var(--linea);border:1px solid var(--linea)}
+  .neg article{position:relative;isolation:isolate;overflow:hidden;background:var(--nero);
+    min-height:clamp(380px,46vh,460px);padding:38px 32px 32px;display:flex;flex-direction:column;
+    color:var(--bianco)}
+  .neg article img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;
+    transform:scale(1.04);transition:transform 1.4s cubic-bezier(.22,1,.36,1)}
+  .neg article::after{content:'';position:absolute;inset:0;z-index:-1;
+    background:linear-gradient(180deg,rgba(11,11,10,.60) 0%,rgba(11,11,10,.55) 38%,rgba(11,11,10,.90) 100%)}
+  .neg article:hover img{transform:scale(1)}
   .neg .citta{font-size:9.5px;letter-spacing:.34em;text-transform:uppercase;color:var(--oro);margin-bottom:14px}
-  .neg h3{font-family:var(--titolo);font-size:19px;font-weight:400;letter-spacing:.18em;text-transform:uppercase;margin-bottom:16px}
-  .neg p{font-size:13.5px;line-height:2;color:var(--grigio);margin-bottom:6px}
-  .neg .ore{font-size:11px;letter-spacing:.06em;margin-top:10px}
-  .neg .azioni{display:flex;gap:18px;flex-wrap:wrap;margin-top:auto;padding-top:22px}
-  .neg .azioni a{font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--nero);text-decoration:none;border-bottom:1px solid var(--nero);padding-bottom:3px}
+  .neg h3{font-family:var(--titolo);font-size:clamp(20px,2.2vw,26px);font-weight:400;letter-spacing:.2em;
+    text-transform:uppercase;margin-bottom:auto}
+  .neg p{font-size:13.5px;line-height:2;color:#d8d8d4;margin-bottom:6px}
+  .neg .ore{font-size:11px;letter-spacing:.06em;margin-top:10px;color:#a9a9a4}
+  .neg .azioni{display:flex;gap:18px;flex-wrap:wrap;margin-top:22px}
+  .neg .azioni a{font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--bianco);
+    text-decoration:none;border-bottom:1px solid rgba(255,255,255,.45);padding-bottom:3px}
+  .neg .azioni a:hover{border-bottom-color:var(--oro);color:var(--oro)}
   .dove-nota{font-size:11px;line-height:2;color:var(--grigio);letter-spacing:.06em;margin-top:34px;text-align:center}
   .dr-foot .checkout{width:100%;background:var(--nero);color:var(--bianco);padding:15px 0;font-size:11px;letter-spacing:.3em;text-transform:uppercase}
   .dr-foot small{display:block;margin-top:10px;font-size:9px;letter-spacing:.1em;color:var(--grigio);text-align:center}
@@ -223,19 +232,33 @@
   .wheel-clip{width:min(76vmin,680px);aspect-ratio:1;border-radius:50%;overflow:hidden;display:grid;place-items:center;background:var(--carta)}
   .wheel-clip img{width:112%;height:112%;object-fit:cover;will-change:transform}
   .edit-hero figcaption{text-align:center;padding:22px 20px 26px;font-size:10px;letter-spacing:.34em;text-transform:uppercase;color:var(--grigio)}
-  .mosaico{max-width:1180px;margin:110px auto -150px;padding:0 20px;display:grid;grid-template-columns:repeat(12,1fr);gap:clamp(16px,2.4vw,30px);position:relative;z-index:2}
-  .mosaico figure{margin:0;position:relative;display:flex;flex-direction:column}
-  .mosaico figure:nth-child(1){grid-column:1/8;grid-row:1/3}
-  .mosaico figure:nth-child(1) img{aspect-ratio:auto;height:100%;flex:1;min-height:0}
-  .mosaico figure:nth-child(2){grid-column:8/13;grid-row:1}
-  .mosaico figure:nth-child(3){grid-column:8/13;grid-row:2}
-  .mosaico figcaption{margin-top:11px;font-size:9px;letter-spacing:.3em;text-transform:uppercase;color:var(--grigio)}
-  .mosaico .oro{color:var(--oro)}
-  .mosaico img{width:100%;aspect-ratio:1/1;object-fit:cover;display:block;background:var(--carta)}
-  @media(max-width:720px){
-    .mosaico{grid-template-columns:1fr;gap:18px;margin-bottom:-90px}
-    .mosaico figure{grid-column:auto !important;grid-row:auto !important}
-    .mosaico figure:nth-child(1) img{aspect-ratio:1/1;height:auto}
+  /* ---- campagna: nastro a tutta larghezza, sette volti ---- */
+  .campagna{background:var(--nero);color:var(--bianco);padding:clamp(60px,8vh,90px) 0 0;
+    position:relative;overflow:hidden}
+  .cp-head{display:flex;align-items:baseline;justify-content:space-between;gap:20px;
+    padding:0 5vw clamp(34px,5vh,50px);max-width:1600px;margin:0 auto}
+  .cp-head h2{font-family:var(--titolo);font-weight:400;font-size:clamp(20px,2.6vw,30px);
+    letter-spacing:.24em;text-transform:uppercase}
+  .cp-head span{font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:#8f8f8b}
+  .cp-nastro{position:relative;
+    -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 6%,#000 94%,transparent 100%);
+            mask-image:linear-gradient(90deg,transparent 0,#000 6%,#000 94%,transparent 100%)}
+  .cp-pista{display:flex;gap:0;width:max-content;animation:scorri 64s linear infinite}
+  .campagna:hover .cp-pista{animation-play-state:paused}
+  @keyframes scorri{ from{transform:translateX(0)} to{transform:translateX(-50%)} }
+  .cp-volto{position:relative;flex:0 0 auto;width:clamp(210px,20vw,320px);overflow:hidden}
+  .cp-volto img{width:100%;aspect-ratio:4/5;object-fit:cover;display:block;
+    filter:grayscale(.25) contrast(1.04);transition:filter .6s ease,transform 1.2s cubic-bezier(.22,1,.36,1)}
+  .cp-volto:hover img{filter:none;transform:scale(1.03)}
+  .cp-volto figcaption{position:absolute;left:0;right:0;bottom:0;padding:34px 18px 16px;
+    font-size:10px;letter-spacing:.3em;text-transform:uppercase;
+    background:linear-gradient(180deg,transparent,rgba(11,11,10,.82))}
+  .cp-coda{text-align:center;padding:clamp(30px,5vh,46px) 5vw clamp(10px,2vh,20px);
+    font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:#4a4a46}
+  @media(max-width:720px){ .cp-pista{animation-duration:46s} }
+  @media(prefers-reduced-motion:reduce){
+    .cp-pista{animation:none;width:auto;overflow-x:auto;scroll-snap-type:x mandatory}
+    .cp-volto{scroll-snap-align:center}
   }
   /* ---- banco: costruisci il tuo ---- */
   .banco{background:var(--nero);color:var(--bianco);padding:96px 20px 104px}
@@ -559,11 +582,16 @@
   </div>
 </section>
 
-<div class="mosaico">
-  <figure><img loading="lazy" src="img-edit-2.jpg" alt=""><figcaption>Archivio <span class="oro">✦</span> 01</figcaption></figure>
-  <figure><img loading="lazy" src="img-edit-3.jpg" alt=""><figcaption>Archivio <span class="oro">✦</span> 02</figcaption></figure>
-  <figure><img loading="lazy" src="img-edit-4.jpg" alt=""><figcaption>Archivio <span class="oro">✦</span> 03</figcaption></figure>
-</div>
+<section class="campagna" id="campagna">
+  <div class="cp-head">
+    <h2>La campagna</h2>
+    <span>Drop 01 ✦ sette volti</span>
+  </div>
+  <div class="cp-nastro">
+    <div class="cp-pista" id="cpPista"></div>
+  </div>
+  <p class="cp-coda">Passa sopra per fermare il nastro</p>
+</section>
 
 <section class="storia" id="storia">
   <div class="st-in">
@@ -683,6 +711,8 @@
 
     <div class="neg">
       <article>
+        <img src="img-negozio-italianoptic.jpg" loading="lazy" decoding="async"
+             alt="L'interno del negozio ItalianOptic a Curno">
         <span class="citta">Curno · Bergamo</span>
         <h3>ItalianOptic</h3>
         <p>Via Bergamo 32<br>24035 Curno (BG)</p>
@@ -693,6 +723,8 @@
         </div>
       </article>
       <article>
+        <img src="img-negozio-otticaluce.jpg" loading="lazy" decoding="async"
+             alt="L'interno del negozio Ottica Luce a Treviglio">
         <span class="citta">Treviglio · Bergamo</span>
         <h3>Ottica Luce</h3>
         <p>Via Abate Crippa 5/D<br>24047 Treviglio (BG)</p>
@@ -1219,6 +1251,19 @@ new IntersectionObserver(e => archVis = e[0].isIntersecting,
                          { rootMargin: '10% 0px' }).observe(archSec);
 if (!REDUCE) requestAnimationFrame(archFrame);
 else { archDetEl.textContent = ''; }
+
+/* ---------- campagna: nastro dei sette ritratti, duplicato per il loop ---------- */
+(() => {
+  const pista = document.getElementById('cpPista');
+  if (!pista) return;
+  const uno = MODELLI.map(m => `
+    <figure class="cp-volto">
+      <img src="${m.modella}" loading="lazy" decoding="async" alt="${m.nome} indossato">
+      <figcaption>${m.nome}</figcaption>
+    </figure>`).join('');
+  pista.innerHTML = uno + uno;          /* due giri identici: il loop non ha stacco */
+  [...pista.children].slice(MODELLI.length).forEach(el => el.setAttribute('aria-hidden','true'));
+})();
 
 /* ---------- ricarica: si riparte dall'alto, non da dove si era ---------- */
 if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
