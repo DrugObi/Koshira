@@ -78,6 +78,7 @@
   @keyframes slide{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
   .collezione{max-width:1180px;margin:0 auto;padding:88px 20px 40px}
+  .prezzo-nota{font-size:9.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--grigio);margin-top:6px}
   .sec-head{display:flex;align-items:baseline;justify-content:space-between;border-bottom:1px solid var(--nero);padding-bottom:14px;margin-bottom:8px}
   .sec-head h2{font-family:var(--titolo);font-weight:400;font-size:clamp(22px,3.2vw,32px);letter-spacing:.2em;text-transform:uppercase}
   .sec-head span{font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--grigio)}
@@ -172,10 +173,22 @@
   .dr-item .qty button{border:1px solid var(--linea);width:24px;height:24px;font-size:13px;line-height:1}
   .dr-foot{border-top:1px solid var(--nero);padding:18px 20px 24px}
   .dr-foot .tot{display:flex;justify-content:space-between;font-size:12px;letter-spacing:.2em;text-transform:uppercase;margin-bottom:14px}
-  .dr-iva{font-size:10px;line-height:1.8;color:var(--grigio);letter-spacing:.06em;margin:10px 0 12px}
-  .dr-ok{display:flex;gap:9px;align-items:flex-start;font-size:11px;line-height:1.7;color:var(--nero);margin-bottom:14px;cursor:pointer}
-  .dr-ok input{margin-top:3px;accent-color:var(--nero);flex:0 0 auto}
-  .dr-ok a{color:var(--nero)}
+  .dr-iva{font-size:10px;line-height:1.9;color:var(--grigio);letter-spacing:.06em;margin:10px 0 16px}
+  .dr-foot small a{color:var(--grigio)}
+  .add.secondaria{background:none;color:var(--nero);border:1px solid var(--nero);margin-top:10px}
+  /* ---- rivenditori ---- */
+  .dove{background:var(--carta);padding:clamp(80px,9vw,120px) 5vw;border-top:1px solid var(--linea)}
+  .dove-in{max-width:1080px;margin:0 auto}
+  .dove-intro{font-size:14px;line-height:2;color:var(--grigio);max-width:56ch;margin:26px 0 44px}
+  .neg{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1px;background:var(--linea);border:1px solid var(--linea)}
+  .neg article{background:var(--bianco);padding:34px 30px 30px;display:flex;flex-direction:column}
+  .neg .citta{font-size:9.5px;letter-spacing:.34em;text-transform:uppercase;color:var(--oro);margin-bottom:14px}
+  .neg h3{font-family:var(--titolo);font-size:19px;font-weight:400;letter-spacing:.18em;text-transform:uppercase;margin-bottom:16px}
+  .neg p{font-size:13.5px;line-height:2;color:var(--grigio);margin-bottom:6px}
+  .neg .ore{font-size:11px;letter-spacing:.06em;margin-top:10px}
+  .neg .azioni{display:flex;gap:18px;flex-wrap:wrap;margin-top:auto;padding-top:22px}
+  .neg .azioni a{font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--nero);text-decoration:none;border-bottom:1px solid var(--nero);padding-bottom:3px}
+  .dove-nota{font-size:11px;line-height:2;color:var(--grigio);letter-spacing:.06em;margin-top:34px;text-align:center}
   .dr-foot .checkout{width:100%;background:var(--nero);color:var(--bianco);padding:15px 0;font-size:11px;letter-spacing:.3em;text-transform:uppercase}
   .dr-foot small{display:block;margin-top:10px;font-size:9px;letter-spacing:.1em;color:var(--grigio);text-align:center}
 
@@ -409,10 +422,10 @@
 
 <header>
   <div class="brand"><img src="img-brand-wordmark.png" alt="KOSHIRA"></div>
-  <nav><a href="#vetrine">Vetrine</a><a href="#collezione">Collezione</a><a href="#archivio">Archivio</a><a href="#storia">Storia</a><a href="#contatti">Contatti</a></nav>
+  <nav><a href="#vetrine">Vetrine</a><a href="#collezione">Collezione</a><a href="#archivio">Archivio</a><a href="#storia">Storia</a><a href="#dove">Rivenditori</a></nav>
   <div style="display:flex;align-items:center;gap:18px">
     <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="mnav">Menu</button>
-    <button class="cart-btn" id="cartBtn" aria-expanded="false" aria-controls="drawer" onclick="toggleCart(true)">Carrello <span class="count" id="cartCount" aria-hidden="true">0</span><span class="sr-only" id="cartSr">vuoto</span></button>
+    <button class="cart-btn" id="cartBtn" aria-expanded="false" aria-controls="drawer" onclick="toggleCart(true)">Selezione <span class="count" id="cartCount" aria-hidden="true">0</span><span class="sr-only" id="cartSr">vuoto</span></button>
   </div>
 </header>
 
@@ -420,6 +433,7 @@
   <span class="mn-jp" aria-hidden="true">コシラ</span>
   <button class="mn-close" id="mnClose">✕ Chiudi</button>
   <a class="mn-link" href="#vetrine">Vetrine</a>
+  <a class="mn-link" href="#dove">Rivenditori</a>
   <a class="mn-link" href="#collezione">Collezione</a>
   <a class="mn-link" href="#trova">Trova la tua forma</a>
   <a class="mn-link" href="#archivio">Archivio</a>
@@ -478,7 +492,7 @@
   <div class="grid" id="grid"></div>
   <noscript>
     <p style="padding:28px 0;font-size:13px;line-height:1.9;color:#4c4c48">
-      La vetrina interattiva richiede JavaScript. Il Drop 01 comprende sette forme in acetato,
+      La vetrina interattiva richiede JavaScript. Gli occhiali KOSHIRA si acquistano presso gli ottici rivenditori (ItalianOptic — Curno, Ottica Luce — Treviglio). Il Drop 01 comprende sette forme in acetato,
       tutte con la stella in metallo sulla cerniera: Benè, Alone., Robin, Anuar, Riri, Julian e Joel,
       in ventidue varianti fra neri, tartarugati e trasparenti.
       Scrivici a <a href="#contatti" style="color:#0b0b0a">contatti</a> per l'elenco completo.
@@ -563,12 +577,48 @@
           <div class="bt-det" id="btDet"></div>
           <div class="bt-prezzo" id="btPrezzo"></div>
           <div class="bt-mis" id="btMis" style="display:none"></div>
-          <button class="bt-add" id="btAdd">Aggiungi al carrello ✦</button>
+          <button class="bt-add" id="btAdd">Aggiungi alla selezione ✦</button>
           <button class="bt-more" id="btMore">Apri la scheda</button>
         </div>
         <p class="sr-only" id="btLive" role="status" aria-live="polite"></p>
       </div>
     </div>
+  </div>
+</section>
+
+<section class="dove" id="dove">
+  <div class="dove-in">
+    <div class="sec-head"><h2>Dove trovarli</h2><span>2 punti vendita</span></div>
+    <p class="dove-intro">KOSHIRA non si vende online. Ogni pezzo si prova e si acquista dagli ottici
+      che hanno scelto la collezione: montature e lenti vanno misurate sul viso, e un occhiale va
+      indossato prima di essere comprato.</p>
+
+    <div class="neg">
+      <article>
+        <span class="citta">Curno · Bergamo</span>
+        <h3>ItalianOptic</h3>
+        <p>Via Bergamo 32<br>24035 Curno (BG)</p>
+        <p class="ore">Lun–Sab 9:00–12:30 · 15:00–19:30<br>Domenica chiuso</p>
+        <div class="azioni">
+          <a href="tel:+39035463950">035 463950</a>
+          <a href="https://www.google.com/maps/search/?api=1&amp;query=ItalianOptic%20Curno&amp;query_place_id=ChIJHyQ6TMpTgUcRzJVgNBYNMl8" target="_blank" rel="noopener">Apri in mappe</a>
+        </div>
+      </article>
+      <article>
+        <span class="citta">Treviglio · Bergamo</span>
+        <h3>Ottica Luce</h3>
+        <p>Via Abate Crippa 5/D<br>24047 Treviglio (BG)</p>
+        <p class="ore">Lun–Sab 9:00–19:00<br>Domenica chiuso</p>
+        <div class="azioni">
+          <a href="tel:+390363562450">0363 562450</a>
+          <a href="https://www.google.com/maps/search/?api=1&amp;query=Ottica%20Luce%20Treviglio&amp;query_place_id=ChIJBfUfhFhJgUcRTuXc9E1ufGg" target="_blank" rel="noopener">Apri in mappe</a>
+        </div>
+      </article>
+    </div>
+
+    <p class="dove-nota">Orari indicativi, verificane l'aggiornamento prima di muoverti.<br>
+      Sei un ottico e vuoi portare KOSHIRA in negozio?
+      <a href="mailto:info@frabensrl.eu?subject=Rivendita%20KOSHIRA">Scrivici</a>.</p>
   </div>
 </section>
 
@@ -578,14 +628,13 @@
     <a href="https://www.instagram.com/koshiraeyewear/" target="_blank" rel="noopener">Instagram</a>
     <a href="TIKTOK_URL" target="_blank" rel="noopener">TikTok</a>
     <a href="mailto:info@frabensrl.eu">Email</a>
-    <a href="condizioni.html#spedizioni">Spedizioni &amp; Resi</a>
+    <a href="#dove">Dove trovarli</a>
   </div>
   <div class="links legale">
     <a href="privacy.html">Privacy</a>
     <a href="privacy.html#cookie">Cookie</a>
-    <a href="condizioni.html">Condizioni di vendita</a>
-    <a href="condizioni.html#recesso">Diritto di recesso</a>
-    <a href="condizioni.html#garanzia">Garanzia</a>
+    <a href="informazioni.html">Informazioni</a>
+    <a href="informazioni.html#garanzia">Garanzia</a>
   </div>
   <p class="societa">
     KOSHIRA è un marchio di <b>FRABEN S.r.l.</b><br>
@@ -607,6 +656,7 @@
       <div class="num" id="ovNum"></div>
       <h3 id="ovNome"></h3>
       <div class="prezzo" id="ovPrezzo"></div>
+      <div class="prezzo-nota">Prezzo consigliato al pubblico</div>
       <p class="desc" id="ovDesc"></p>
       <div id="misBlock" style="display:none">
         <div class="sel-label" style="margin-bottom:8px">Misure</div>
@@ -619,24 +669,24 @@
         <div class="sel-label" style="margin-bottom:8px">Lenti</div>
         <div class="chips" id="chipsFin"></div>
       </div>
-      <button class="add" id="ovAdd">Aggiungi al carrello ✦</button>
-      <div class="nota">Prezzo IVA inclusa · <a href="condizioni.html#spedizioni">Spedizione</a> · <a href="condizioni.html#recesso">Reso entro 14 giorni</a> · <a href="condizioni.html#garanzia">Garanzia 24 mesi</a></div>
+      <button class="add" id="ovAdd">Aggiungi alla selezione ✦</button>
+      <button class="add secondaria" id="ovChiedi">Richiedi questo modello</button>
+      <div class="nota">Prezzo consigliato al pubblico, IVA inclusa · <a href="#dove">Dove provarlo</a> · <a href="informazioni.html#garanzia">Garanzia 24 mesi</a></div>
     </div>
   </div>
 </div>
 
 <div class="scrim" id="scrim" onclick="toggleCart(false)"></div>
 <aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="drTitolo" tabindex="-1">
-  <div class="dr-head"><h4 id="drTitolo">Carrello</h4><button onclick="toggleCart(false)">✕ Chiudi</button></div>
+  <div class="dr-head"><h4 id="drTitolo">La tua selezione</h4><button onclick="toggleCart(false)">✕ Chiudi</button></div>
   <div class="dr-items" id="drItems"></div>
   <div class="dr-foot">
-    <div class="tot"><span>Totale</span><span id="drTot">€ 0</span></div>
-    <p class="dr-iva">Prezzi IVA inclusa. Le spese di spedizione sono calcolate al passo successivo, prima della conferma dell'ordine.</p>
-    <label class="dr-ok"><input type="checkbox" id="drAccetta">
-      <span>Ho letto e accetto le <a href="condizioni.html" target="_blank" rel="noopener">condizioni di vendita</a>
-      e l'<a href="privacy.html" target="_blank" rel="noopener">informativa privacy</a>.</span></label>
-    <button class="checkout" onclick="checkoutDemo()">Ordine con obbligo di pagare</button>
-    <small>Anteprima — il pagamento verrà collegato in fase di apertura vendite</small>
+    <div class="tot"><span>Totale indicativo</span><span id="drTot">€ 0</span></div>
+    <p class="dr-iva">Prezzi consigliati al pubblico, IVA inclusa. Gli occhiali KOSHIRA si acquistano
+      presso gli ottici rivenditori: scrivici e ti diciamo dove trovare i pezzi che hai scelto.</p>
+    <button class="checkout" onclick="richiediSelezione()">Chiedi dove provarli</button>
+    <small><a href="#dove" onclick="toggleCart(false)">Vedi i punti vendita</a> ·
+      <a href="mailto:info@frabensrl.eu">Scrivici via email</a></small>
   </div>
 </aside>
 
@@ -775,7 +825,7 @@ let cur = { m:null, v:0, fin:null };
 function openProduct(m,i,v,fin){
   cur = { m, i, v:v||0, fin:fin||null };
   const btn = document.getElementById('ovAdd');
-  btn.disabled = false; btn.textContent = 'Aggiungi al carrello ✦';
+  btn.disabled = false; btn.textContent = 'Aggiungi alla selezione ✦';
   document.getElementById('ovNome').textContent = m.nome;
   document.getElementById('ovPrezzo').textContent = fmt(m.prezzo);
   document.getElementById('ovDesc').textContent = m.desc;
@@ -881,6 +931,33 @@ document.addEventListener('keydown', e=>{
   else if(!e.shiftKey && document.activeElement === ultimo){ e.preventDefault(); primo.focus(); }
 });
 
+/* ---------- richieste via WhatsApp ----------
+   Sostituire WA con il numero WhatsApp Business in formato internazionale
+   senza + e senza spazi, es. '393331234567'. */
+const WA = '39XXXXXXXXXX';
+
+function apriRichiesta(testo){
+  if(WA.indexOf('X') > -1){
+    toast('Numero WhatsApp non ancora configurato');
+    return;
+  }
+  window.open('https://wa.me/' + WA + '?text=' + encodeURIComponent(testo), '_blank', 'noopener');
+}
+function richiediModello(){
+  if(!cur || !cur.m) return;
+  const m = cur.m, v = m.varianti[cur.v];
+  const fin = Object.keys(v.finiture).length > 1 ? ' (' + cur.fin + ')' : '';
+  const url = location.origin + location.pathname + '#/' + m.id + '/' + v.codice + '/' + cur.fin;
+  apriRichiesta('Ciao KOSHIRA, mi interessa ' + m.nome + ' \u00ab' + v.codice + '\u00bb ' +
+                v.colore + fin + '.\nDove posso provarlo?\n' + url);
+}
+function richiediSelezione(){
+  if(!cart.length){ toast('Aggiungi prima un modello alla selezione'); return; }
+  const righe = cart.map(x => '\u2022 ' + x.nome + ' ' + x.det + (x.qty > 1 ? ' \u00d7' + x.qty : '')).join('\n');
+  apriRichiesta('Ciao KOSHIRA, mi interessano:\n' + righe + '\n\nDove posso provarli?');
+}
+document.getElementById('ovChiedi').onclick = richiediModello;
+
 document.getElementById('ovAdd').onclick = ()=>{
   const m = cur.m, v = m.varianti[cur.v];
   const finLabel = Object.keys(v.finiture).length>1 ? ' \u00b7 ' + cur.fin : '';
@@ -907,14 +984,14 @@ function renderCart(){
   const box = document.getElementById('drItems');
   const n = cart.reduce((s,x)=>s+x.qty,0);
   document.getElementById('cartCount').textContent = n;
-  document.getElementById('cartSr').textContent = n===0 ? 'vuoto' : n===1 ? '1 articolo' : n+' articoli';
+  document.getElementById('cartSr').textContent = n===0 ? 'vuoto' : n===1 ? '1 pezzo selezionato' : n+' pezzi selezionati';
   box.innerHTML = cart.length ? cart.map(x=>`
     <div class="dr-item">
       <div><div class="n">${x.nome}</div><div class="p">${x.det} \u00b7 ${fmt(x.prezzo)}</div></div>
       <div class="qty">
         <button onclick="changeQty('${x.key}',-1)">\u2212</button><span>${x.qty}</span><button onclick="changeQty('${x.key}',1)">+</button>
       </div>
-    </div>`).join('') : '<div class="dr-empty">Il carrello \u00e8 vuoto</div>';
+    </div>`).join('') : '<div class="dr-empty">Nessun pezzo selezionato</div>';
   const tot = cart.reduce((s,x)=>s+(x.prezzo||0)*x.qty,0);
   document.getElementById('drTot').textContent = '\u20ac ' + tot.toFixed(0);
   try { localStorage.setItem(CART_KEY, JSON.stringify(cart)); } catch(e){}
@@ -927,13 +1004,7 @@ function toggleCart(open){
   open ? apriDialogo(dr, ()=>toggleCart(false)) : chiudiDialogo(dr);
 }
 function checkoutDemo(){
-  var ok = document.getElementById('drAccetta');
-  if(ok && !ok.checked){
-    toast('Per procedere accetta le condizioni di vendita');
-    ok.focus();
-    return;
-  }
-  alert('Checkout demo \u2014 il pagamento reale si collega quando pubblichiamo il sito.');
+  richiediSelezione();
 }
 /* menu mobile (sotto i 720px la nav dell'header e' nascosta) */
 const mnav = document.getElementById('mnav');
@@ -948,7 +1019,7 @@ mnav.querySelectorAll('.mn-link').forEach(a => a.onclick = () => toggleMenu(fals
 
 function toast(msg){
   const t = document.getElementById('toast');
-  t.textContent = msg || 'Aggiunto al carrello \u2726';
+  t.textContent = msg || 'Aggiunto alla selezione \u2726';
   t.classList.add('show');
   clearTimeout(t._t);
   t._t = setTimeout(()=>t.classList.remove('show'), 1600);
