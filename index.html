@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>KOSHIRA — Eyewear ✦ Drop 01</title>
-<meta name="description" content="KOSHIRA — eyewear di ispirazione giapponese. Sette forme e ventidue varianti: acetati neri, tartarugati e trasparenti, con la stella incisa sul frontale. Drop 01.">
+<meta name="description" content="KOSHIRA — eyewear di ispirazione giapponese. Sette forme e ventidue varianti: acetati neri, tartarugati e trasparenti, con la stella in metallo sulla cerniera. Drop 01.">
 <link rel="canonical" href="https://drugobi.github.io/Koshira/">
 <meta name="theme-color" content="#0b0b0a">
 
@@ -21,14 +21,14 @@
 <meta property="og:locale" content="it_IT">
 <meta property="og:url" content="https://drugobi.github.io/Koshira/">
 <meta property="og:title" content="KOSHIRA — Eyewear ✦ Drop 01">
-<meta property="og:description" content="Sette forme, ventidue varianti. Eyewear di ispirazione giapponese, con la stella incisa sul frontale.">
+<meta property="og:description" content="Sette forme, ventidue varianti. Eyewear di ispirazione giapponese, con la stella in metallo sulla cerniera.">
 <meta property="og:image" content="https://drugobi.github.io/Koshira/img-edit-9.jpg">
 <meta property="og:image:width" content="1024">
 <meta property="og:image:height" content="1024">
 <meta property="og:image:alt" content="La stella Koshira, still-life in oro">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="KOSHIRA — Eyewear ✦ Drop 01">
-<meta name="twitter:description" content="Sette forme, ventidue varianti. Eyewear di ispirazione giapponese, con la stella incisa sul frontale.">
+<meta name="twitter:description" content="Sette forme, ventidue varianti. Eyewear di ispirazione giapponese, con la stella in metallo sulla cerniera.">
 <meta name="twitter:image" content="https://drugobi.github.io/Koshira/img-edit-9.jpg">
 <style>
   :root{
@@ -111,6 +111,10 @@
   footer .links{display:flex;gap:26px;justify-content:center;font-size:10px;letter-spacing:.26em;text-transform:uppercase;margin-bottom:26px;flex-wrap:wrap}
   footer .links a{color:var(--nero);text-decoration:none}
   footer p{font-size:10px;color:var(--grigio);letter-spacing:.12em}
+  footer .links.legale{gap:20px;margin-bottom:22px;font-size:9.5px;letter-spacing:.2em}
+  footer .links.legale a{color:var(--grigio)}
+  footer .societa{max-width:640px;margin:0 auto 18px;line-height:2.1;letter-spacing:.06em}
+  footer .societa b{color:var(--nero);font-weight:400}
 
   .overlay{position:fixed;inset:0;background:var(--bianco);z-index:80;display:none;overflow-y:auto}
   .overlay.open{display:block}
@@ -168,6 +172,10 @@
   .dr-item .qty button{border:1px solid var(--linea);width:24px;height:24px;font-size:13px;line-height:1}
   .dr-foot{border-top:1px solid var(--nero);padding:18px 20px 24px}
   .dr-foot .tot{display:flex;justify-content:space-between;font-size:12px;letter-spacing:.2em;text-transform:uppercase;margin-bottom:14px}
+  .dr-iva{font-size:10px;line-height:1.8;color:var(--grigio);letter-spacing:.06em;margin:10px 0 12px}
+  .dr-ok{display:flex;gap:9px;align-items:flex-start;font-size:11px;line-height:1.7;color:var(--nero);margin-bottom:14px;cursor:pointer}
+  .dr-ok input{margin-top:3px;accent-color:var(--nero);flex:0 0 auto}
+  .dr-ok a{color:var(--nero)}
   .dr-foot .checkout{width:100%;background:var(--nero);color:var(--bianco);padding:15px 0;font-size:11px;letter-spacing:.3em;text-transform:uppercase}
   .dr-foot small{display:block;margin-top:10px;font-size:9px;letter-spacing:.1em;color:var(--grigio);text-align:center}
 
@@ -471,7 +479,7 @@
   <noscript>
     <p style="padding:28px 0;font-size:13px;line-height:1.9;color:#4c4c48">
       La vetrina interattiva richiede JavaScript. Il Drop 01 comprende sette forme in acetato,
-      tutte con la stella incisa sul frontale: Benè, Alone., Robin, Anuar, Riri, Julian e Joel,
+      tutte con la stella in metallo sulla cerniera: Benè, Alone., Robin, Anuar, Riri, Julian e Joel,
       in ventidue varianti fra neri, tartarugati e trasparenti.
       Scrivici a <a href="#contatti" style="color:#0b0b0a">contatti</a> per l'elenco completo.
     </p>
@@ -516,12 +524,12 @@
   <div class="lt-in">
     <div class="lt-txt">
       <span class="lt-lab">Il dettaglio</span>
-      <h2>La stella <span class="oro">✦</span><br>incisa</h2>
-      <p>Ogni frontale porta il simbolo inciso sull'acetato: profondità di un decimo di millimetro, nessun inchiostro, nessuna stampa. Si legge solo con la luce di taglio — ed è il modo più semplice per riconoscere un pezzo Koshira.</p>
+      <h2>La stella <span class="oro">✦</span><br>sulla cerniera</h2>
+      <p>Non è stampata e non è incisa: è un pezzo di metallo. La stella si monta sulla cerniera del frontale, nel punto esatto in cui l’astina incontra l’acetato — quattro punte, quella bassa più lunga delle altre tre. Si riconosce al tatto prima che alla luce.</p>
       <span class="lt-hint" id="ltHint">Muovi il cursore sulla foto</span>
     </div>
     <div class="lt-media" id="ltMedia">
-      <img id="ltImg" alt="Dettaglio dell'incisione sul frontale">
+      <img id="ltImg" alt="Dettaglio della stella in metallo sulla cerniera del frontale">
       <div class="loupe" id="ltLoupe" aria-hidden="true"></div>
     </div>
   </div>
@@ -566,7 +574,25 @@
 
 <footer id="contatti">
   <img src="img-brand-wordmark.png" alt="KOSHIRA">
-  <div class="links"><a href="#">Instagram</a><a href="#">TikTok</a><a href="#">Email</a><a href="#">Spedizioni & Resi</a></div>
+  <div class="links">
+    <a href="https://www.instagram.com/koshiraeyewear/" target="_blank" rel="noopener">Instagram</a>
+    <a href="TIKTOK_URL" target="_blank" rel="noopener">TikTok</a>
+    <a href="mailto:info@frabensrl.eu">Email</a>
+    <a href="condizioni.html#spedizioni">Spedizioni &amp; Resi</a>
+  </div>
+  <div class="links legale">
+    <a href="privacy.html">Privacy</a>
+    <a href="privacy.html#cookie">Cookie</a>
+    <a href="condizioni.html">Condizioni di vendita</a>
+    <a href="condizioni.html#recesso">Diritto di recesso</a>
+    <a href="condizioni.html#garanzia">Garanzia</a>
+  </div>
+  <p class="societa">
+    KOSHIRA è un marchio di <b>FRABEN S.r.l.</b><br>
+    Via Conte Francesco Ratti 14, 24044 Dalmine (BG), Italia<br>
+    P. IVA e C.F. 04799800166 — REA BG-XXXXXX — Capitale sociale € XXXX i.v.<br>
+    Tel. 035 0668903 — info@frabensrl.eu — PEC XXXX@pec.it
+  </p>
   <p>© 2026 KOSHIRA — Tutti i diritti riservati</p>
 </footer>
 
@@ -594,7 +620,7 @@
         <div class="chips" id="chipsFin"></div>
       </div>
       <button class="add" id="ovAdd">Aggiungi al carrello ✦</button>
-      <div class="nota">Spedizione in Italia inclusa · Reso entro 14 giorni</div>
+      <div class="nota">Prezzo IVA inclusa · <a href="condizioni.html#spedizioni">Spedizione</a> · <a href="condizioni.html#recesso">Reso entro 14 giorni</a> · <a href="condizioni.html#garanzia">Garanzia 24 mesi</a></div>
     </div>
   </div>
 </div>
@@ -605,8 +631,12 @@
   <div class="dr-items" id="drItems"></div>
   <div class="dr-foot">
     <div class="tot"><span>Totale</span><span id="drTot">€ 0</span></div>
-    <button class="checkout" onclick="checkoutDemo()">Vai al checkout</button>
-    <small>Anteprima — il pagamento verrà collegato in fase di pubblicazione</small>
+    <p class="dr-iva">Prezzi IVA inclusa. Le spese di spedizione sono calcolate al passo successivo, prima della conferma dell'ordine.</p>
+    <label class="dr-ok"><input type="checkbox" id="drAccetta">
+      <span>Ho letto e accetto le <a href="condizioni.html" target="_blank" rel="noopener">condizioni di vendita</a>
+      e l'<a href="privacy.html" target="_blank" rel="noopener">informativa privacy</a>.</span></label>
+    <button class="checkout" onclick="checkoutDemo()">Ordine con obbligo di pagare</button>
+    <small>Anteprima — il pagamento verrà collegato in fase di apertura vendite</small>
   </div>
 </aside>
 
@@ -621,7 +651,7 @@
    ============================================================ */
 const MODELLI = [
   { id:'bene', modella:'img-models-bene.jpg', nome:'Ben\u00e8', prezzo:null,
-    desc:'Squadrato massiccio con dettagli a tre punti e stella incisa sul frontale. Un solo colore: nero.',
+    desc:'Squadrato massiccio con dettagli a tre punti e stella in metallo sulla cerniera. Un solo colore: nero.',
     varianti:[ {codice:'01', colore:'Nero', finiture:{unica:22}} ] },
   { id:'alone', modella:'img-models-alone.jpg', nome:'Alone.', prezzo:null,
     desc:'Mascherina squadrata dal volume pieno, lente bordeaux. Il punto finale della collezione \u2014 letteralmente.',
@@ -897,6 +927,12 @@ function toggleCart(open){
   open ? apriDialogo(dr, ()=>toggleCart(false)) : chiudiDialogo(dr);
 }
 function checkoutDemo(){
+  var ok = document.getElementById('drAccetta');
+  if(ok && !ok.checked){
+    toast('Per procedere accetta le condizioni di vendita');
+    ok.focus();
+    return;
+  }
   alert('Checkout demo \u2014 il pagamento reale si collega quando pubblichiamo il sito.');
 }
 /* menu mobile (sotto i 720px la nav dell'header e' nascosta) */
@@ -1046,7 +1082,7 @@ const ltMedia = document.getElementById('ltMedia');
 const ltImg = document.getElementById('ltImg');
 const ltLoupe = document.getElementById('ltLoupe');
 const LT_ZOOM = 2.2;
-ltImg.src = P(22, 3);              /* Ben\u00e8 \u2014 dettaglio incisione */
+ltImg.src = P(22, 3);              /* Ben\u00e8 \u2014 dettaglio cerniera */
 
 function loupeInit(){
   ltLoupe.style.backgroundImage = `url("${ltImg.currentSrc || ltImg.src}")`;
@@ -1376,7 +1412,7 @@ renderCart();
   const VETRINE = [
     { id:'nero',  lab:'Nero',        jp:'\u9ed2', img:'img-models-bene.jpg',
       alt:'Ritratto campagna \u2014 acetato nero',
-      nota:'Il fondo della collezione: acetato nero lucido, stella incisa sul frontale.',
+      nota:'Il fondo della collezione: acetato nero lucido, stella in metallo sulla cerniera.',
       f:c => /nero/i.test(c.v.colore) },
     { id:'tarta', lab:'Tartarugato', jp:'\u6591', img:'img-models-anuar.jpg',
       alt:'Ritratto campagna \u2014 modello Anuar',
@@ -1487,7 +1523,7 @@ renderCart();
       "name": "KOSHIRA",
       "url": "https://drugobi.github.io/Koshira/",
       "logo": "https://drugobi.github.io/Koshira/img-brand-wordmark.png",
-      "description": "Eyewear di ispirazione giapponese, handmade in Italy. Sette forme in acetato con la stella incisa sul frontale."
+      "description": "Eyewear di ispirazione giapponese, handmade in Italy. Sette forme in acetato con la stella in metallo sulla cerniera."
     },
     {
       "@type": "ItemList",
@@ -1497,7 +1533,7 @@ renderCart();
         { "@type": "ListItem", "position": 1, "item": {
           "@type": "Product", "name": "Benè", "brand": { "@id": "https://drugobi.github.io/Koshira/#brand" },
           "category": "Occhiali da vista", "material": "Acetato",
-          "description": "Squadrato massiccio con dettagli a tre punti e stella incisa sul frontale. Un solo colore: nero.",
+          "description": "Squadrato massiccio con dettagli a tre punti e stella in metallo sulla cerniera. Un solo colore: nero.",
           "image": "https://drugobi.github.io/Koshira/img-22-1.jpg",
           "url": "https://drugobi.github.io/Koshira/#/bene/01/unica" } },
         { "@type": "ListItem", "position": 2, "item": {
