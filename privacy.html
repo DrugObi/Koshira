@@ -53,6 +53,13 @@
   footer b{color:var(--nero);font-weight:400}
   footer .nav{display:flex;gap:22px;justify-content:center;flex-wrap:wrap;margin-bottom:24px;letter-spacing:.24em;text-transform:uppercase}
   footer .nav a{color:var(--grigio);text-decoration:none}
+  footer .dati summary{list-style:none;cursor:pointer;display:inline-flex;align-items:center;gap:9px;
+    font-size:9.5px;letter-spacing:.26em;text-transform:uppercase;color:var(--grigio)}
+  footer .dati summary::-webkit-details-marker{display:none}
+  footer .dati summary::after{content:'+';color:var(--oro);font-size:12px;line-height:1}
+  footer .dati[open] summary::after{content:'\2212'}
+  footer .dati summary:focus-visible{outline:1px solid var(--oro);outline-offset:5px}
+  footer .dati p{margin-top:18px}
 </style>
 </head>
 <body>
@@ -72,7 +79,7 @@
     <p><b>FRABEN S.R.L.</b><br>
     Via Conte Francesco Ratti 14 — 24044 Dalmine (BG), Italia<br>
     P. IVA e Codice Fiscale 04799800166<br>
-    REA <span class="todo">[BG-XXXXXX]</span> — Capitale sociale € <span class="todo">[IMPORTO]</span> i.v.<br>
+    REA <span class="todo">[BG-XXXXXX]</span><br>
     Tel. 035 0668903 — info@frabensrl.eu<br>
     PEC <span class="todo">[INDIRIZZO PEC]</span></p>
     <p>KOSHIRA è un marchio di Fraben S.r.l. Il titolare non ha nominato un Responsabile della
@@ -195,10 +202,15 @@
     <a href="index.html#dove">Rivenditori</a>
     <a href="informazioni.html#garanzia">Garanzia</a>
   </div>
-  KOSHIRA è un marchio di <b>FRABEN S.r.l.</b><br>
-  Via Conte Francesco Ratti 14, 24044 Dalmine (BG), Italia<br>
-  P. IVA e C.F. 04799800166 — REA <span class="todo">[BG-XXXXXX]</span> — Capitale sociale € <span class="todo">[IMPORTO]</span> i.v.<br>
-  Tel. 035 0668903 — info@frabensrl.eu — PEC <span class="todo">[PEC]</span>
+  <details class="dati">
+    <summary>Dati societari</summary>
+    <p>
+    KOSHIRA è un marchio di <b>FRABEN S.r.l.</b><br>
+    Via Conte Francesco Ratti 14, 24044 Dalmine (BG), Italia<br>
+    P. IVA e C.F. 04799800166 — REA <span class="todo">[BG-XXXXXX]</span><br>
+    Tel. 035 0668903 — info@frabensrl.eu — PEC <span class="todo">[PEC]</span>
+    </p>
+  </details>
 </footer>
 
 </body>

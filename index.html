@@ -132,13 +132,23 @@
   .in .ln:nth-child(3){transition-delay:.32s}
 
   footer{padding:70px 24px 40px;text-align:center;border-top:1px solid var(--linea)}
+  footer .ft-kana{font-size:13px;letter-spacing:.7em;color:var(--oro);margin-bottom:20px;text-indent:.7em}
   footer img{width:min(220px,50vw);margin:0 auto 26px}
   footer .links{display:flex;gap:26px;justify-content:center;font-size:10px;letter-spacing:.26em;text-transform:uppercase;margin-bottom:26px;flex-wrap:wrap}
   footer .links a{color:var(--nero);text-decoration:none}
   footer p{font-size:10px;color:var(--grigio);letter-spacing:.12em}
   footer .links.legale{gap:20px;margin-bottom:22px;font-size:9.5px;letter-spacing:.2em}
   footer .links.legale a{color:var(--grigio)}
-  footer .societa{max-width:640px;margin:0 auto 18px;line-height:2.1;letter-spacing:.06em}
+  footer .dati{margin:0 auto 20px}
+  footer .dati summary{list-style:none;cursor:pointer;display:inline-flex;align-items:center;gap:9px;
+    font-size:9.5px;letter-spacing:.26em;text-transform:uppercase;color:var(--grigio);
+    transition:color .3s ease}
+  footer .dati summary::-webkit-details-marker{display:none}
+  footer .dati summary::after{content:'+';color:var(--oro);font-size:12px;line-height:1}
+  footer .dati[open] summary::after{content:'\2212'}
+  footer .dati summary:hover{color:var(--nero)}
+  footer .dati summary:focus-visible{outline:1px solid var(--oro);outline-offset:5px}
+  footer .societa{max-width:640px;margin:20px auto 0;line-height:2.1;letter-spacing:.06em}
   footer .societa b{color:var(--nero);font-weight:400}
 
   .overlay{position:fixed;inset:0;background:var(--bianco);z-index:80;display:none;overflow-y:auto}
@@ -382,7 +392,7 @@
   /* --- Storia cinetica --- */
 
   /* --- Il dettaglio / lente --- */
-  .lente{background:var(--carta);padding:clamp(80px,11vh,130px) 5vw}
+  .lente{background:var(--carta);padding:clamp(80px,11vh,130px) 5vw clamp(130px,17vh,200px)}
   .lt-in{max-width:1260px;margin:0 auto;display:grid;grid-template-columns:.82fr 1.18fr;
     gap:clamp(30px,5vw,80px);align-items:center}
   .lt-lab{display:block;font-size:10px;letter-spacing:.34em;text-transform:uppercase;color:var(--grigio);
@@ -395,9 +405,30 @@
   .lt-meta span{font-size:9.5px;letter-spacing:.3em;text-transform:uppercase;color:var(--oro)}
   .lt-meta b{display:block;font-size:12px;letter-spacing:.18em;text-transform:uppercase;
     color:var(--nero);font-weight:400;margin-top:8px}
+  .lt-media{position:relative;isolation:isolate;cursor:crosshair}
   .lt-media img{width:100%;height:auto;transform:scale(1.05);opacity:0;
     transition:transform 2.4s cubic-bezier(.22,1,.36,1),opacity 1.2s ease}
   .lt-media.in img{transform:scale(1);opacity:1}
+  /* filigrana: il kanji di stella dietro il pezzo */
+  .lente{position:relative;overflow:hidden}
+  .lt-in{position:relative;z-index:1}
+  .lt-kanji{position:absolute;right:calc(50% + clamp(20px,4vw,70px));bottom:clamp(30px,6vh,70px);z-index:0;
+    font-size:min(21vw,250px);line-height:.85;color:rgba(11,11,10,.06);pointer-events:none;
+    opacity:0;transition:opacity 1.8s ease .4s}
+  .lente.in .lt-kanji{opacity:1}
+  /* riflesso che segue il puntatore: l'ottone prende luce */
+  .lt-luce{position:absolute;inset:0;pointer-events:none;mix-blend-mode:soft-light;opacity:0;
+    transition:opacity .5s ease;
+    background:radial-gradient(circle 30% at var(--lx,50%) var(--ly,50%),rgba(255,255,255,.95),transparent 70%)}
+  .lt-media:hover .lt-luce{opacity:1}
+  /* colonna verticale in giapponese accanto al testo */
+  .lt-vert{writing-mode:vertical-rl;text-orientation:upright;position:absolute;
+    left:clamp(16px,2vw,30px);top:clamp(16px,2vw,30px);z-index:2;
+    font-size:12px;letter-spacing:.42em;color:rgba(11,11,10,.42);
+    opacity:0;transition:opacity 1.2s ease .6s}
+  .lt-vert b{color:var(--oro);font-weight:400}
+  .lt-media.in .lt-vert{opacity:1}
+  @media(max-width:900px){ .lt-vert{font-size:11px} }
   .lt-cap{display:block;font-size:10px;letter-spacing:.26em;text-transform:uppercase;
     color:var(--grigio);text-align:center;opacity:0;transition:opacity 1s ease .8s}
   .lt-media.in .lt-cap{opacity:1}
@@ -642,7 +673,8 @@
 </section>
 
 
-<section class="lente" id="dettaglio">
+<section class="lente" id="dettaglio" data-rivela>
+  <span class="lt-kanji" aria-hidden="true">星</span>
   <div class="lt-in">
     <div class="lt-txt">
       <span class="lt-lab">Il dettaglio</span>
@@ -657,9 +689,11 @@
         <span>03<b>Handmade in Italy</b></span>
       </div>
     </div>
-    <div class="lt-media" data-rivela>
+    <div class="lt-media" id="ltMedia" data-rivela>
+      <span class="lt-vert" aria-hidden="true"><b>星</b> ・ ほし</span>
       <img src="img-edit-9.jpg" loading="lazy" decoding="async"
            alt="La stella Koshira in ottone, still-life su fondo carta">
+      <span class="lt-luce" aria-hidden="true"></span>
       <span class="lt-cap">La stella, prima del montaggio</span>
     </div>
   </div>
@@ -744,10 +778,10 @@
 </section>
 
 <footer id="contatti">
+  <p class="ft-kana" aria-hidden="true">コシラ</p>
   <img src="img-brand-wordmark.png" alt="KOSHIRA">
   <div class="links">
     <a href="https://www.instagram.com/koshiraeyewear/" target="_blank" rel="noopener">Instagram</a>
-    <a href="TIKTOK_URL" target="_blank" rel="noopener">TikTok</a>
     <a href="https://wa.me/393274436757" target="_blank" rel="noopener">WhatsApp</a>
     <a href="mailto:info@frabensrl.eu">Email</a>
     <a href="#dove">Dove trovarli</a>
@@ -758,12 +792,15 @@
     <a href="informazioni.html">Informazioni</a>
     <a href="informazioni.html#garanzia">Garanzia</a>
   </div>
-  <p class="societa">
-    KOSHIRA è un marchio di <b>FRABEN S.r.l.</b><br>
-    Via Conte Francesco Ratti 14, 24044 Dalmine (BG), Italia<br>
-    P. IVA e C.F. 04799800166 — REA BG-XXXXXX — Capitale sociale € XXXX i.v.<br>
-    Tel. 035 0668903 — info@frabensrl.eu — PEC XXXX@pec.it
-  </p>
+  <details class="dati">
+    <summary>Dati societari</summary>
+    <p class="societa">
+      KOSHIRA è un marchio di <b>FRABEN S.r.l.</b><br>
+      Via Conte Francesco Ratti 14, 24044 Dalmine (BG), Italia<br>
+      P. IVA e C.F. 04799800166 — REA BG-XXXXXX<br>
+      Tel. 035 0668903 — info@frabensrl.eu — PEC XXXX@pec.it
+    </p>
+  </details>
   <p>© 2026 KOSHIRA — Tutti i diritti riservati</p>
 </footer>
 
@@ -1251,6 +1288,17 @@ new IntersectionObserver(e => archVis = e[0].isIntersecting,
                          { rootMargin: '10% 0px' }).observe(archSec);
 if (!REDUCE) requestAnimationFrame(archFrame);
 else { archDetEl.textContent = ''; }
+
+/* ---------- stella: il riflesso segue il puntatore ---------- */
+(() => {
+  const m = document.getElementById('ltMedia');
+  if (!m || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  m.addEventListener('pointermove', e => {
+    const r = m.getBoundingClientRect();
+    m.style.setProperty('--lx', ((e.clientX - r.left) / r.width  * 100) + '%');
+    m.style.setProperty('--ly', ((e.clientY - r.top ) / r.height * 100) + '%');
+  });
+})();
 
 /* ---------- campagna: nastro dei sette ritratti, duplicato per il loop ---------- */
 (() => {
