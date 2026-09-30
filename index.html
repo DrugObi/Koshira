@@ -99,6 +99,11 @@
   .tile-btn{position:absolute;inset:0;width:100%}
   .tile-editoriale{cursor:default}
   .tile-editoriale:hover{background:var(--bianco)}
+  /* la sua immagine e' in posizione assoluta: senza questo, quando resta sola
+     nella riga (griglia a una colonna) la tile collassa a una striscia */
+  .tile-editoriale::before{content:'';display:block;aspect-ratio:4/5}
+  /* a una colonna non c'e' nessun buco da riempire: la tile decorativa esce di scena */
+  @media(max-width:579px){ .tile-editoriale{display:none} }
   .tile-editoriale .ed-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
 
   .storia{background:var(--nero);color:var(--bianco);margin-top:0;overflow:hidden;
@@ -909,7 +914,7 @@ const MODELLI = [
       {codice:'01', colore:'Nero', finiture:{unica:14}},
       {codice:'02', colore:'Tartaruga chiara', finiture:{unica:17}},
       {codice:'03', colore:'Marrone trasparente', finiture:{unica:15}} ] },
-  { id:'robin', modella:'img-models-robin.jpg', nome:'Robin', prezzo:null,
+  { id:'robin', modella:'img-models-robin.jpg', nome:'Robin', prezzo:450,
     desc:'Rettangolare semi-rimless dal taglio anni \u201990: acetato nero lucido, lente verde chiaro, cerniere in metallo a vista.',
     varianti:[ {codice:'01', colore:'Nero', finiture:{unica:1}} ] },
   { id:'anuar', modella:'img-models-anuar.jpg', nome:'Anuar', cover:20, prezzo:null,
@@ -942,6 +947,18 @@ const MODELLI = [
 const P=(c,n)=>`img-${c}-${n}.jpg`;
 const imgs = c => [1,2,3].map(n => P(c,n));  // c: numero o cartella so_*
 const fmt = p => p==null ? '\u2014 \u20ac' : '\u20ac ' + p.toFixed(0);
+
+/* Listino consigliato al pubblico. Il prezzo segue la lente; un modello puo'
+   sovrascriverlo con il proprio campo `prezzo` (vedi Robin). */
+const LISTINO = { Vista: 350, Sole: 390, unica: 390 };
+const prezzoDi = (m, fin) => m.prezzo != null ? m.prezzo
+                           : (LISTINO[fin] != null ? LISTINO[fin] : LISTINO.unica);
+const prezziDi = m => m.varianti.flatMap(v => Object.keys(v.finiture).map(f => prezzoDi(m, f)));
+const prezzoDa = m => {
+  const p = prezziDi(m);
+  const min = Math.min(...p), max = Math.max(...p);
+  return min === max ? fmt(min) : 'da ' + fmt(min);
+};
 
 /* misure: calibro / ponte / asta in mm, dal disegno tecnico del produttore.
    Modelli senza misure confermate: il blocco resta nascosto. */
@@ -983,7 +1000,7 @@ MODELLI.forEach((m,i)=>{
     <span class="spark">\u2726</span>
     <div class="info">
       <span class="nome">${m.nome}<small>${nvar} ${nvar>1?'varianti':'variante'}</small></span>
-      <span class="prezzo">${fmt(m.prezzo)}</span>
+      <span class="prezzo">${prezzoDa(m)}</span>
     </div>
     <button class="tile-btn" aria-label="Apri ${m.nome}"></button>`;
   const isTouch = matchMedia('(hover: none)').matches;
@@ -1027,7 +1044,6 @@ function openProduct(m,i,v,fin){
   const btn = document.getElementById('ovAdd');
   btn.disabled = false; btn.textContent = 'Aggiungi alla selezione ✦';
   document.getElementById('ovNome').textContent = m.nome;
-  document.getElementById('ovPrezzo').textContent = fmt(m.prezzo);
   document.getElementById('ovDesc').textContent = m.desc;
   const mb = document.getElementById('misBlock');
   if(m.misure){
@@ -1045,6 +1061,7 @@ function renderVariant(){
   if(!fins.includes(cur.fin)) cur.fin = fins[0];
   document.getElementById('ovNum').textContent =
     `N. ${String(cur.i+1).padStart(2,'0')} / 07 \u00b7 "${v.codice}" \u2014 ${v.colore}`;
+  document.getElementById('ovPrezzo').textContent = fmt(prezzoDi(m, cur.fin));
   /* variant chips */
   document.getElementById('chipsVar').innerHTML = m.varianti.map((x,k)=>
     `<button class="chip ${k===cur.v?'on':''}" onclick="setVar(${k})">"${x.codice}" ${x.colore}</button>`).join('');
@@ -1157,7 +1174,7 @@ document.getElementById('ovAdd').onclick = ()=>{
   const m = cur.m, v = m.varianti[cur.v];
   const finLabel = Object.keys(v.finiture).length>1 ? ' \u00b7 ' + cur.fin : '';
   addToCart({ key:`${m.id}-${v.codice}-${cur.fin}`, nome:m.nome,
-    det:`"${v.codice}" ${v.colore}${finLabel}`, prezzo:m.prezzo });
+    det:`"${v.codice}" ${v.colore}${finLabel}`, prezzo:prezzoDi(m, cur.fin) });
 };
 
 /* cart — persistito in localStorage, cosi' non si svuota al reload */
@@ -1602,7 +1619,7 @@ renderCart();
     document.getElementById('btNum').textContent = `N. ${String(n).padStart(2, '0')} / ${COMBO.length}`;
     document.getElementById('btNome').textContent = m.nome;
     document.getElementById('btDet').textContent = `"${v.codice}" ${v.colore}${finLabel}`;
-    document.getElementById('btPrezzo').textContent = fmt(m.prezzo);
+    document.getElementById('btPrezzo').textContent = fmt(prezzoDi(m, S.f));
     const bm = document.getElementById('btMis');
     if(m.misure){ bm.style.display = ''; bm.innerHTML = misHtml(m); }
     else { bm.style.display = 'none'; bm.innerHTML = ''; }
