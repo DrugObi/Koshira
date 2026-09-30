@@ -8,9 +8,7 @@
 <link rel="canonical" href="https://drugobi.github.io/Koshira/">
 <meta name="theme-color" content="#0b0b0a">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500&display=swap">
+<link rel="preload" href="font-bodoni-moda.woff2" as="font" type="font/woff2" crossorigin>
 
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="alternate icon" href="favicon.ico" sizes="any">
@@ -26,7 +24,7 @@
 <meta property="og:image:width" content="1024">
 <meta property="og:image:height" content="1024">
 <meta property="og:image:alt" content="La stella Koshira, still-life in oro">
-<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="KOSHIRA — Eyewear ✦ Drop 01">
 <meta name="twitter:description" content="Sette forme, ventidue varianti. Eyewear di ispirazione giapponese, con la stella in metallo sulla cerniera.">
 <meta name="twitter:image" content="https://drugobi.github.io/Koshira/img-edit-9.jpg">
@@ -43,7 +41,14 @@
   html{scroll-behavior:smooth}
   section[id],main[id],footer[id]{scroll-margin-top:72px}
   body{background:var(--bianco);color:var(--nero);font-family:var(--sans);-webkit-font-smoothing:antialiased}
-  img{display:block;max-width:100%}
+  /* Bodoni Moda ospitato sul sito (OFL 1.1): nessuna chiamata a Google, niente IP a terzi */
+  @font-face{font-family:'Bodoni Moda';src:url('font-bodoni-moda.woff2') format('woff2');
+    font-weight:400 500;font-style:normal;font-display:swap}
+  img{display:block;max-width:100%;height:auto}
+  /* Stella ✦ del brand: un solo disegno vettoriale ovunque, prende il colore del testo */
+  .st{display:inline-block;width:.72em;height:.72em;vertical-align:-.02em;background:currentColor;
+    -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50 0C53.5 33 67 46.5 100 50C67 53.5 53.5 67 50 100C46.5 67 33 53.5 0 50C33 46.5 46.5 33 50 0Z'/%3E%3C/svg%3E") center/contain no-repeat;
+    mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50 0C53.5 33 67 46.5 100 50C67 53.5 53.5 67 50 100C46.5 67 33 53.5 0 50C33 46.5 46.5 33 50 0Z'/%3E%3C/svg%3E") center/contain no-repeat}
   button{font-family:inherit;cursor:pointer;background:none;border:none;color:inherit}
 
   header{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:16px 20px;mix-blend-mode:difference;color:#fff}
@@ -580,7 +585,7 @@
 
 <section class="hero">
   <h1 class="sr-only">KOSHIRA — eyewear di ispirazione giapponese, Drop 01</h1>
-  <img class="logo" src="img-brand-logo-full.png" alt="KOSHIRA — simbolo e logotipo">
+  <img class="logo" src="img-brand-logo-full.png" width="1200" height="1287" alt="KOSHIRA — simbolo e logotipo">
   <div class="tag">Eyewear ・ Streetwear ・ Drop 01</div>
   <div class="jp">コ シ ラ</div>
   <a class="scroll" href="#vetrine">Scorri ✦</a>
@@ -791,7 +796,7 @@
       <article>
         <img class="foto" src="img-negozio-italianoptic.jpg" loading="lazy" decoding="async"
              alt="L'interno del negozio ItalianOptic a Curno">
-        <span class="logo" aria-hidden="true"><img src="img-logo-italianoptic.png" loading="lazy" decoding="async" alt=""></span>
+        <span class="logo" aria-hidden="true"><img src="img-logo-italianoptic.png" width="900" height="323" loading="lazy" decoding="async" alt=""></span>
         <span class="citta">Curno · Bergamo</span>
         <h3>ItalianOptic</h3>
         <p>Via Bergamo 32<br>24035 Curno (BG)</p>
@@ -804,7 +809,7 @@
       <article>
         <img class="foto" src="img-negozio-otticaluce.jpg" loading="lazy" decoding="async"
              alt="L'interno del negozio Ottica Luce a Treviglio">
-        <span class="logo" aria-hidden="true"><img src="img-logo-otticaluce.png" loading="lazy" decoding="async" alt=""></span>
+        <span class="logo" aria-hidden="true"><img src="img-logo-otticaluce.png" width="900" height="403" loading="lazy" decoding="async" alt=""></span>
         <span class="citta">Treviglio · Bergamo</span>
         <h3>Ottica Luce</h3>
         <p>Via Abate Crippa 5/D<br>24047 Treviglio (BG)</p>
@@ -825,7 +830,7 @@
 
 <footer id="contatti">
   <p class="ft-kana" aria-hidden="true">コシラ</p>
-  <img src="img-brand-wordmark.png" alt="KOSHIRA">
+  <img src="img-brand-wordmark.png" width="1200" height="651" alt="KOSHIRA">
   <div class="links">
     <a href="https://www.instagram.com/koshiraeyewear/" target="_blank" rel="noopener">Instagram</a>
     <a href="https://wa.me/393274436757" target="_blank" rel="noopener">WhatsApp</a>
@@ -843,8 +848,8 @@
     <p class="societa">
       KOSHIRA è un marchio di <b>FRABEN S.r.l.</b><br>
       Via Conte Francesco Ratti 14, 24044 Dalmine (BG), Italia<br>
-      P. IVA e C.F. 04799800166 — REA BG-XXXXXX<br>
-      Tel. 035 0668903 — info@frabensrl.eu — PEC XXXX@pec.it
+      P. IVA e C.F. 04799800166 — REA BG-490364<br>
+      Tel. 035 0668903 — info@frabensrl.eu — PEC frabensrl@namirialpec.it
     </p>
   </details>
   <p>© 2026 KOSHIRA — Tutti i diritti riservati</p>
@@ -901,23 +906,24 @@
 
 /* ============================================================
    CATALOGO — cartella = cartella foto (images/<n>/1..3.jpg)
-   prezzo: null = da definire. desc: testi provvisori.
+   prezzo: scavalca il listino (solo Robin). desc: testi provvisori.
    finiture: {Vista:cartella, Sole:cartella} oppure {unica:cartella}
+   lente: categoria delle versioni 'unica' (Sole o Vista), sul modello o sulla variante
    ============================================================ */
 const MODELLI = [
-  { id:'bene', modella:'img-models-bene.jpg', nome:'Ben\u00e8', prezzo:null,
+  { id:'bene', modella:'img-models-bene.jpg', nome:'Ben\u00e8', prezzo:null, lente:'Sole',
     desc:'Squadrato massiccio con dettagli a tre punti e stella in metallo sulla cerniera. Un solo colore: nero.',
     varianti:[ {codice:'01', colore:'Nero', finiture:{unica:22}} ] },
-  { id:'alone', modella:'img-models-alone.jpg', nome:'Alone.', prezzo:null,
+  { id:'alone', modella:'img-models-alone.jpg', nome:'Alone.', prezzo:null, lente:'Sole',
     desc:'Mascherina squadrata dal volume pieno, lente bordeaux. Il punto finale della collezione \u2014 letteralmente.',
     varianti:[
       {codice:'01', colore:'Nero', finiture:{unica:14}},
       {codice:'02', colore:'Tartaruga chiara', finiture:{unica:17}},
       {codice:'03', colore:'Marrone trasparente', finiture:{unica:15}} ] },
-  { id:'robin', modella:'img-models-robin.jpg', nome:'Robin', prezzo:450,
+  { id:'robin', modella:'img-models-robin.jpg', nome:'Robin', prezzo:450, lente:'Sole',
     desc:'Rettangolare semi-rimless dal taglio anni \u201990: acetato nero lucido, lente verde chiaro, cerniere in metallo a vista.',
     varianti:[ {codice:'01', colore:'Nero', finiture:{unica:1}} ] },
-  { id:'anuar', modella:'img-models-anuar.jpg', nome:'Anuar', cover:20, prezzo:null,
+  { id:'anuar', modella:'img-models-anuar.jpg', nome:'Anuar', cover:20, prezzo:null, lente:'Sole',
     desc:'Geometrico a taglio esagonale, lente piena. Tre colorazioni, stessa attitudine.',
     misure:{ c:50, p:22, a:145, base:4, scheda:'KSA02' },
     varianti:[
@@ -930,7 +936,7 @@ const MODELLI = [
     varianti:[
       {codice:'01', colore:'Nero', finiture:{Vista:12, Sole:16}},
       {codice:'02', colore:'Tartarugato', finiture:{Vista:6, Sole:4}},
-      {codice:'03', colore:'Rosso trasparente', finiture:{unica:5}} ] },
+      {codice:'03', colore:'Rosso trasparente', finiture:{unica:5}, lente:'Vista'} ] },
   { id:'julian', modella:'img-models-julian.jpg', nome:'Julian', cover:7, prezzo:null,
     desc:'Tondo grafico dal profilo compatto, il pezzo pi\u00f9 versatile dell\u2019archivio. Da vista o da sole.',
     varianti:[
@@ -941,19 +947,20 @@ const MODELLI = [
     desc:'Squadrato essenziale, spigoli netti e presenza decisa. Disponibile da vista o da sole.',
     varianti:[
       {codice:'01', colore:'Nero', finiture:{Vista:10, Sole:21}},
-      {codice:'02', colore:'Cristallo', finiture:{unica:13}} ] }
+      {codice:'02', colore:'Cristallo', finiture:{unica:13}, lente:'Vista'} ] }
 ];
 
 const P=(c,n)=>`img-${c}-${n}.jpg`;
 const imgs = c => [1,2,3].map(n => P(c,n));  // c: numero o cartella so_*
 const fmt = p => p==null ? '\u2014 \u20ac' : '\u20ac ' + p.toFixed(0);
 
-/* Listino consigliato al pubblico. Il prezzo segue la lente; un modello puo'
-   sovrascriverlo con il proprio campo `prezzo` (vedi Robin). */
-const LISTINO = { Vista: 350, Sole: 390, unica: 390 };
-const prezzoDi = (m, fin) => m.prezzo != null ? m.prezzo
-                           : (LISTINO[fin] != null ? LISTINO[fin] : LISTINO.unica);
-const prezziDi = m => m.varianti.flatMap(v => Object.keys(v.finiture).map(f => prezzoDi(m, f)));
+/* Listino consigliato al pubblico: da vista 350, da sole 390, Robin 450.
+   Il prezzo segue la categoria della lente; un modello puo' scavalcarlo
+   con il proprio campo `prezzo` (vedi Robin). */
+const LISTINO = { Vista: 350, Sole: 390 };
+const lenteDi  = (m, v, fin) => fin !== 'unica' ? fin : (v.lente ?? m.lente);
+const prezzoDi = (m, v, fin) => m.prezzo ?? LISTINO[lenteDi(m, v, fin)];
+const prezziDi = m => m.varianti.flatMap(v => Object.keys(v.finiture).map(f => prezzoDi(m, v, f)));
 const prezzoDa = m => {
   const p = prezziDi(m);
   const min = Math.min(...p), max = Math.max(...p);
@@ -1061,7 +1068,7 @@ function renderVariant(){
   if(!fins.includes(cur.fin)) cur.fin = fins[0];
   document.getElementById('ovNum').textContent =
     `N. ${String(cur.i+1).padStart(2,'0')} / 07 \u00b7 "${v.codice}" \u2014 ${v.colore}`;
-  document.getElementById('ovPrezzo').textContent = fmt(prezzoDi(m, cur.fin));
+  document.getElementById('ovPrezzo').textContent = fmt(prezzoDi(m, v, cur.fin));
   /* variant chips */
   document.getElementById('chipsVar').innerHTML = m.varianti.map((x,k)=>
     `<button class="chip ${k===cur.v?'on':''}" onclick="setVar(${k})">"${x.codice}" ${x.colore}</button>`).join('');
@@ -1158,7 +1165,7 @@ function apriRichiesta(testo){
 function richiediModello(){
   if(!cur || !cur.m) return;
   const m = cur.m, v = m.varianti[cur.v];
-  const fin = Object.keys(v.finiture).length > 1 ? ' (' + cur.fin + ')' : '';
+  const fin = ' (da ' + lenteDi(m, v, cur.fin).toLowerCase() + ')';
   const url = location.origin + location.pathname + '#/' + m.id + '/' + v.codice + '/' + cur.fin;
   apriRichiesta('Ciao KOSHIRA, mi interessa ' + m.nome + ' \u00ab' + v.codice + '\u00bb ' +
                 v.colore + fin + '.\nDove posso provarlo?\n' + url);
@@ -1172,13 +1179,13 @@ document.getElementById('ovChiedi').onclick = richiediModello;
 
 document.getElementById('ovAdd').onclick = ()=>{
   const m = cur.m, v = m.varianti[cur.v];
-  const finLabel = Object.keys(v.finiture).length>1 ? ' \u00b7 ' + cur.fin : '';
+  const finLabel = ' \u00b7 ' + lenteDi(m, v, cur.fin);
   addToCart({ key:`${m.id}-${v.codice}-${cur.fin}`, nome:m.nome,
-    det:`"${v.codice}" ${v.colore}${finLabel}`, prezzo:prezzoDi(m, cur.fin) });
+    det:`"${v.codice}" ${v.colore}${finLabel}`, prezzo:prezzoDi(m, v, cur.fin) });
 };
 
 /* cart — persistito in localStorage, cosi' non si svuota al reload */
-const CART_KEY = 'koshira-cart-v1';
+const CART_KEY = 'koshira-cart-v2';
 let cart = (() => { try { return JSON.parse(localStorage.getItem(CART_KEY)) || []; }
                     catch(e){ return []; } })();
 function addToCart(item){
@@ -1335,7 +1342,7 @@ function archFrame(){
     archDetEl.classList.add('out');
     clearTimeout(archSwap);
     archSwap = setTimeout(() => {
-      archDetEl.textContent = `"${a.v.codice}" ${a.v.colore}` + (a.fin !== 'unica' ? ' \u00b7 ' + a.fin : '');
+      archDetEl.textContent = `"${a.v.codice}" ${a.v.colore}` + ' \u00b7 ' + lenteDi(a.m, a.v, a.fin);
       archDetEl.classList.remove('out');
     }, 170);
     archLast = best;
@@ -1470,7 +1477,7 @@ function tvResult(){
       <div class="tx">
         <div class="tv-step">La tua forma</div>
         <div class="tv-nome" tabindex="-1">${best.nome}</div>
-        <div class="tv-var">"${v.codice}" ${v.colore}${fin !== 'unica' ? ' \u00b7 ' + fin : ''}${best.misure ? ' \u00b7 ' + best.misure.c + '\u25ab' + best.misure.p + ' ' + best.misure.a : ''}</div>
+        <div class="tv-var">"${v.codice}" ${v.colore}${' \u00b7 ' + lenteDi(best, v, fin)}${best.misure ? ' \u00b7 ' + best.misure.c + '\u25ab' + best.misure.p + ' ' + best.misure.a : ''}</div>
         <p>${best.desc}</p>
         <button class="tv-cta" id="tvCta">Vedi il modello \u2726</button>
         <button class="tv-again" id="tvAgain">Ricomincia</button>
@@ -1615,11 +1622,11 @@ renderCart();
     sync();
 
     const n = COMBO.findIndex(c => c.mi === S.mi && c.vi === S.vi && c.fin === S.f) + 1;
-    const finLabel = fins.length > 1 ? ' \u00b7 ' + S.f : '';
+    const finLabel = ' \u00b7 ' + lenteDi(m, v, S.f);
     document.getElementById('btNum').textContent = `N. ${String(n).padStart(2, '0')} / ${COMBO.length}`;
     document.getElementById('btNome').textContent = m.nome;
     document.getElementById('btDet').textContent = `"${v.codice}" ${v.colore}${finLabel}`;
-    document.getElementById('btPrezzo').textContent = fmt(prezzoDi(m, S.f));
+    document.getElementById('btPrezzo').textContent = fmt(prezzoDi(m, v, S.f));
     const bm = document.getElementById('btMis');
     if(m.misure){ bm.style.display = ''; bm.innerHTML = misHtml(m); }
     else { bm.style.display = 'none'; bm.innerHTML = ''; }
@@ -1644,9 +1651,9 @@ renderCart();
   document.getElementById('btAdd').onclick = () => {
     const m = MODELLI[S.mi], v = m.varianti[S.vi];
     const fins = Object.keys(v.finiture);
-    const finLabel = fins.length > 1 ? ' \u00b7 ' + S.f : '';
+    const finLabel = ' \u00b7 ' + lenteDi(m, v, S.f);
     addToCart({ key:`${m.id}-${v.codice}-${S.f}`, nome:m.nome,
-                det:`"${v.codice}" ${v.colore}${finLabel}`, prezzo:m.prezzo });
+                det:`"${v.codice}" ${v.colore}${finLabel}`, prezzo:prezzoDi(m, v, S.f) });
   };
   document.getElementById('btMore').onclick = () =>
     openProduct(MODELLI[S.mi], S.mi, S.vi, S.f);
@@ -1678,11 +1685,11 @@ renderCart();
     { id:'sole',  lab:'Sole',        jp:'\u967d', img:'img-models-riri.jpg',
       alt:'Ritratto campagna \u2014 lente ambrata',
       nota:'Le combinazioni montate con lente solare.',
-      f:c => c.fin === 'Sole' },
+      f:c => lenteDi(c.m, c.v, c.fin) === 'Sole' },
     { id:'vista', lab:'Vista',       jp:'\u8996', img:'img-models-julian.jpg',
       alt:'Ritratto campagna \u2014 occhiale da vista',
       nota:'Montature da vista, pronte per le tue lenti.',
-      f:c => c.fin === 'Vista' },
+      f:c => lenteDi(c.m, c.v, c.fin) === 'Vista' },
     { id:'trasp', lab:'Trasparente', jp:'\u900f', img:'img-models-joel.jpg',
       alt:'Ritratto campagna \u2014 acetato cristallo',
       nota:'Cristallo, rosso e marrone trasparente: l\u2019acetato che lascia passare la luce.',
@@ -1727,7 +1734,7 @@ renderCart();
       `${n} ${n === 1 ? 'combinazione' : 'combinazioni'} su ${COMBO.length}. ${v.nota}`;
     vsGrid.innerHTML = v.lista.map((c, k) => {
       const fins = Object.keys(c.v.finiture);
-      const fin = fins.length > 1 ? ` \u00b7 ${c.fin}` : '';
+      const fin = ` \u00b7 ${lenteDi(c.m, c.v, c.fin)}`;
       return `
       <button class="vs-card" data-k="${k}" aria-label="Apri ${c.m.nome} ${c.v.colore}">
         <span class="ph"><img loading="lazy" decoding="async" src="${P(c.folder, 1)}" alt="${c.m.nome} \u2014 ${c.v.colore}"></span>
@@ -1789,7 +1796,7 @@ renderCart();
       "itemListElement": [
         { "@type": "ListItem", "position": 1, "item": {
           "@type": "Product", "name": "Benè", "brand": { "@id": "https://drugobi.github.io/Koshira/#brand" },
-          "category": "Occhiali da vista", "material": "Acetato",
+          "category": "Occhiali da sole", "material": "Acetato",
           "description": "Squadrato massiccio con dettagli a tre punti e stella in metallo sulla cerniera. Un solo colore: nero.",
           "image": "https://drugobi.github.io/Koshira/img-22-1.jpg",
           "url": "https://drugobi.github.io/Koshira/#/bene/01/unica" } },
@@ -1801,31 +1808,31 @@ renderCart();
           "url": "https://drugobi.github.io/Koshira/#/alone/01/unica" } },
         { "@type": "ListItem", "position": 3, "item": {
           "@type": "Product", "name": "Robin", "brand": { "@id": "https://drugobi.github.io/Koshira/#brand" },
-          "category": "Occhiali da vista", "material": "Acetato e metallo",
+          "category": "Occhiali da sole", "material": "Acetato e metallo",
           "description": "Rettangolare semi-rimless dal taglio anni Novanta: acetato nero lucido, lente verde chiaro, cerniere in metallo a vista.",
           "image": "https://drugobi.github.io/Koshira/img-1-1.jpg",
           "url": "https://drugobi.github.io/Koshira/#/robin/01/unica" } },
         { "@type": "ListItem", "position": 4, "item": {
           "@type": "Product", "name": "Anuar", "brand": { "@id": "https://drugobi.github.io/Koshira/#brand" },
-          "category": "Occhiali da vista", "material": "Acetato", "size": "50▫22 145",
+          "category": "Occhiali da sole", "material": "Acetato", "size": "50▫22 145",
           "description": "Geometrico a taglio esagonale, lente piena. Nero, tartarugato o verde oliva.",
           "image": "https://drugobi.github.io/Koshira/img-20-1.jpg",
           "url": "https://drugobi.github.io/Koshira/#/anuar/01/unica" } },
         { "@type": "ListItem", "position": 5, "item": {
           "@type": "Product", "name": "Riri", "brand": { "@id": "https://drugobi.github.io/Koshira/#brand" },
-          "category": "Occhiali da sole", "material": "Acetato", "size": "56▫11 145",
+          "category": "Occhiali da vista e da sole", "material": "Acetato", "size": "56▫11 145",
           "description": "Oversize anni Settanta, firma in corsivo sull'astina e ideogramma inciso. Da vista, da sole o rosso trasparente.",
           "image": "https://drugobi.github.io/Koshira/img-4-1.jpg",
           "url": "https://drugobi.github.io/Koshira/#/riri/01/Vista" } },
         { "@type": "ListItem", "position": 6, "item": {
           "@type": "Product", "name": "Julian", "brand": { "@id": "https://drugobi.github.io/Koshira/#brand" },
-          "category": "Occhiali da vista", "material": "Acetato",
+          "category": "Occhiali da vista e da sole", "material": "Acetato",
           "description": "Tondo grafico dal profilo compatto, il pezzo più versatile dell'archivio. Da vista o da sole.",
           "image": "https://drugobi.github.io/Koshira/img-7-1.jpg",
           "url": "https://drugobi.github.io/Koshira/#/julian/01/Vista" } },
         { "@type": "ListItem", "position": 7, "item": {
           "@type": "Product", "name": "Joel", "brand": { "@id": "https://drugobi.github.io/Koshira/#brand" },
-          "category": "Occhiali da vista", "material": "Acetato",
+          "category": "Occhiali da vista e da sole", "material": "Acetato",
           "description": "Squadrato essenziale, spigoli netti e presenza decisa. Nero da vista o da sole, oppure cristallo.",
           "image": "https://drugobi.github.io/Koshira/img-13-1.jpg",
           "url": "https://drugobi.github.io/Koshira/#/joel/01/Vista" } }
@@ -1833,6 +1840,32 @@ renderCart();
     }
   ]
 }
+</script>
+<script>
+/* Sostituisce ogni ✦ testuale con la stella vettoriale .st, anche nei contenuti generati dal JS.
+   Titolo, meta e messaggi WhatsApp restano col carattere: servono come testo. */
+(() => {
+  const SKIP = /^(SCRIPT|STYLE|TEXTAREA|TITLE|NOSCRIPT)$/;
+  const swap = root => {
+    const w = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+      acceptNode: n => n.nodeValue.includes('\u2726') && !SKIP.test(n.parentNode.nodeName)
+        ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT });
+    const nodes = []; while (w.nextNode()) nodes.push(w.currentNode);
+    nodes.forEach(n => {
+      const f = document.createDocumentFragment();
+      n.nodeValue.split('\u2726').forEach((part, i) => {
+        if (i) { const s = document.createElement('i'); s.className = 'st'; s.setAttribute('aria-hidden', 'true'); f.append(s); }
+        if (part) f.append(part);
+      });
+      n.replaceWith(f);
+    });
+  };
+  swap(document.body);
+  new MutationObserver(ms => ms.forEach(m => {
+    if (m.type === 'characterData') { if (m.target.parentNode) swap(m.target.parentNode); }
+    else m.addedNodes.forEach(n => n.nodeType === 1 ? swap(n) : n.nodeType === 3 && n.parentNode && swap(n.parentNode));
+  })).observe(document.body, { childList: true, subtree: true, characterData: true });
+})();
 </script>
 </body>
 </html>
